@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<html>
+<head>
+<style>
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+
+/*Pseudoclase combinada con clase*/
+a.highlight:hover {
+    color: #00FF00;
+} 
+
+/*Tooltip simple usando :hover sobre div*/
+p.ptooltip {
+    display: none;
+    background-color: yellow;
+    padding: 20px;
+    position:absolute; /*Esto evita que todo se desplace hacia abajo cuando aparezca el tooltip.*/
+    width="200px";
+    border-radius: 4px;
+    left:200px; /*Desplazamos un poco el tooltip*/
+}
+
+div.dtooltip:hover p.ptooltip {
+    display: block;
+}
+
+.simple-form {
+  display: flex;
+  overflow-y: scroll;
+  padding-bottom: 1.25rem;
+}
+
+.simple-form input {
+  margin: 0 .25rem;
+  min-width: 125px;
+  border: 1px solid #eee;
+  border-left: 3px solid;
+  border-radius: 5px;
+  transition: border-color .5s ease-out;
+}
+.simple-form input:optional {
+  border-left-color: #999;
+}
+.simple-form input:required {
+  border-left-color: palegreen;
+}
+.simple-form input:invalid {
+  border-left-color: salmon;
+}
+    
+/*Estilos para el menú desplegable*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: lightgray;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+h1::after{
+    width: 100%;
+    height: 3;
+    background-color: red;        
+}
+
+</style>
+</head>
+
+<body>
+<h1>Pseudoclases</h1>
+<div> </div>
+
+<h2>Uso de las pseudoclases link, visited, hover y active.</h2>
+<p><b><a href="default.asp" target="_blank">This is a link</a></b></p>
+<p><b>Nota:</b> a:hover DEBE definirse después de a:link y a:visited en la definición de CSS para que sea efectivo.</p>
+<p><b>Note:</b> a:active DEBE ir después a:hover en la deficinión de CSS para que sea efectivo.</p>
+    
+<h2>Pseudoclase hover combinada con una clase.</h2>
+<p><b><a class="highlight" href="default.asp" target="_blank">This is a link</a></b></p>
+
+<h2>Tooltip usando :hover </h2>
+<div class="dtooltip">¿Qué pasa si mueves el ratón por encima de este texto?.
+<p class="ptooltip">Esto es el tooltip!</p>
+</div>
+
+<h2>Pseudoclase :optional, :invalid  y :required en campos de formulario</h2>
+
+<form class="simple-form" action="/action_page.php" method="get">
+  <input type="text" placeholder="Nombre" name="fname">
+  <input type="text" placeholder="Apellidos" name="lname">
+  <input type="text" placeholder="DNI" name="dni" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" required>
+  <input type="email" placeholder="e-mail" name="email">
+  <input title="Número de 9 cifras" type="text" placeholder="Teléfono" pattern="(\d{9})" name="phone">    
+  <input type="submit" value="Submit">
+</form>
+
+<h2>Otro ejemplo, en este caso un menú desplegable</h2>
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">Noticias</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Productos</a>
+    <div class="dropdown-content">
+      <a href="#">Portátiles</a>
+      <a href="#">Sobremesa</a>
+      <a href="#">Móviles</a>
+    </div>
+  </li>
+</ul>
+</body>
+</html>
+

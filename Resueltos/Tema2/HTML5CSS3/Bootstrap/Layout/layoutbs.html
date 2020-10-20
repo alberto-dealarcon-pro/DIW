@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Ejemplo layout bootstrap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <style>
+    div {
+      border: 1px solid;
+    }
+    .bg-primary {
+      background-color: chartreuse !important;
+    }
+  </style>
+  
+</head>
+
+<body>
+  <br>
+  <h2>Container (ancho fijo).</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col bg-primary">Columna 1</div>
+      <div class="col">Columna 2</div>
+      <div class="col">Columna 3</div>
+    </div>
+  </div>
+
+  <h2>Container fluid (ancho adaptativo).</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">Columna 1</div>
+      <div class="col">Columna 2</div>
+      <div class="col">Columna 3</div>
+    </div>
+  </div>
+
+  <br>
+  <h2>Distribución automática en tres columnas.</h2>
+  <div class="row">
+    <div class="col">Columna 1</div>
+    <div class="col">Columna 2</div>
+    <div class="col">Columna 3</div>
+  </div>
+  <br>
+  <h2>Distribución responsive en tres columnas.</h2>
+
+  <div class="row">
+    <div class="col-sm-4">Columna 1</div>
+    <div class="col-sm-4">Columna 2</div>
+    <div class="col-sm-4">Columna 3</div>
+  </div>
+
+  <br>
+  <h2>Distribución responsive en tres columnas, para dispositivos sm y md.</h2>
+
+  <div class="row">
+    <div class="col-sm-4 col-md-12 text-center">Columna 1</div>
+    <div class="col-sm-4 col-md-6 bg-warning text-center">Columna 2</div>
+    <div class="col-sm-4 col-md-6 bg-info text-center">Columna 3</div>
+  </div>
+
+  <br>
+  <h2>Distribución responsive anidada.</h2>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4  text-center bg-primary text-white">
+        <h1>Hola</h1>
+      </div>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col bg-secondary text-white">Texto2</div>
+              <div class="col bg-warning">Texto3</div>
+            </div>
+            <div class="row">
+              <div class="col-12  text-center bg-success text-white">Texto 5<br><br></div>
+            </div>
+            <div class="row">
+              <div class="col bg-info text-white">Texto 8</div>
+              <div class="col bg-danger text-white">Texto 9</div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-12 bg-info text-white col-6">Texto 4</div>
+              <div class="col-sm-12 col-6">Texto 6</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-6 bg-info text-white">Texto 7</div>
+              <div class="col-sm-12 col-6">Texto 10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

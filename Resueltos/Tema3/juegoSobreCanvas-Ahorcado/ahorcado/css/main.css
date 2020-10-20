@@ -1,0 +1,15 @@
+body {
+    background: #ccc;
+    color: #333;
+    font: 14px 'Arial',sans-serif;
+    text-align: center;
+}
+
+div.contenedor {
+    width: 100%;
+    margin: 0 auto;
+}
+
+div.juego canvas {
+    box-shadow: 0 0 30px #000;
+}

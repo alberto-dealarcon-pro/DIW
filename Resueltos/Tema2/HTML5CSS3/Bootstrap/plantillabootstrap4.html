@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Bootstrap Tutorial Sample Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  
+  <script>
+    function myFunction() {
+      if (window.innerWidth !== undefined && window.innerHeight !== undefined) {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+      } else {
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;
+      }
+      var txt = "Ancho: width=" + w + ", alto=" + h;
+      document.getElementById("demo").innerHTML = txt;
+    }
+  </script>
+  <style>
+  div {
+    border: 1px solid;
+  }
+  </style>
+</head>
+
+<body onresize="myFunction()" onload="myFunction()">
+  
+  <p id="demo">Ancho</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-lg-12 text-center bg-primary">Columna 1</div>
+      <div class="col-md-4 col-lg-6">Columna 2</div>
+      <div class="col-md-4 col-lg-6">Columna 3</div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

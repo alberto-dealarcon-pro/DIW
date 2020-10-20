@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>CSS Template Flex Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Esto sirve para controlar mejor las dimensiones de los contenedores. A partir de ahora las 
+propiedades width y height controlarán el ancho y alto total del contenedor, incluyendo contenido, bordes, márgenes y padding .*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cabebera */
+.header1 {
+    background-color: #FFf1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+/* Contenedor de flexboxes */
+.row {
+    display: -webkit-flex; /*Compatibilidad con versiones anteriores de Chrome*/
+    display: flex;
+}
+/* Creamos tres columnas con el mismo ancho. */
+.column {
+    -webkit-flex: 1;
+    -ms-flex: 1;   
+    flex: 1;   /* La columna queda a la izquierda de la siguiente */
+    padding: 10px;
+    height: 300px; /* Eliminar cuando insertemos contenido. */
+}
+
+.column2 {
+    -webkit-flex: 2;
+    -ms-flex: 2;   
+    flex: 2;   /* La columna queda a la izquierda de la siguiente */
+    padding: 10px;
+    height: 300px; /* Eliminar cuando insertemos contenido. */
+}
+
+.column-red {
+  background-color: red;
+}
+
+.column-green {
+  background-color: green;
+}
+
+.column-blue {
+  background-color: blue;
+}
+
+
+/* Style the footer */
+.footer {
+    background-color: #f1f1ff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .row {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+<body>
+
+
+<h2>Plantilla CSS usando la propiedad display:flex</h2>
+<p>En este ejemplo, hemos creado una cabecera, tres columnas iguales y un pie. En pantallas pequeñas, las columnas se apilarán unas encima de otras.
+</p>
+<p>Redimensiona el navegador para ver que la página es responsiva.</p>
+
+<header class="header1">
+  <h2>Cabecera</h2>
+</header>
+<main>
+<div class="row">
+  <div class="column column-blue" >Columna</div>
+  <div class="column2 column-green" >Columna</div>
+  <div class="column column-red" >Columna</div>
+</div>
+</main>
+<footer class="footer">
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="849911634904-h9gtp4id4vqi8fbk94aju4on4mqf4jqa.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        document.getElementById("loginBtn").style.display='none';
+        document.getElementById("logoutBtn").style.display='block';
+      }
+      function logout(){
+          var auth2 = gapi.auth2.getAuthInstance();
+          if (auth2.isSignedIn.get()){
+             auth2.disconnect();
+             console.log('User signed out.');
+             document.getElementById("loginBtn").style.display='block';
+             document.getElementById("logoutBtn").style.display='none';              
+          }
+          
+      }
+    </script>
+    </head>
+  <body>
+    <div id= "loginBtn" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <button id="logoutBtn" style="display:none;" onclick="logout()">Logout</button>  
+  </body>
+</html>

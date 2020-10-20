@@ -1,0 +1,59 @@
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+  var auth2;
+  var googleUser;
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '849911634904-h9gtp4id4vqi8fbk94aju4on4mqf4jqa.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      
+      auth2.isSignedIn.listen(signinChanged);
+
+    });
+  };
+
+var signinChanged = function (val) {
+  console.log('Signin state changed to ', val);
+  if (auth2.isSignedIn.get()){
+    var profile = auth2.currentUser.get().getBasicProfile();
+    console.log('ID: ' + profile.getId());
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+    document.getElementById('name').innerText = "Signed: "+profile.getName();  
+  }else{
+    console.log('Not signed in.');
+    document.getElementById('name').innerText = "Not signed in. ";
+    document.getElementById('signoutBtn').disabled=true;  
+  }
+};
+
+  function signOut() {
+    console.log("Logout");
+
+    if (auth2.isSignedIn.get())
+      auth2.disconnect();
+
+  }
+
+  </script>
+  </head>
+  <body>
+
+  <div id="name"></div>
+  <button id="signoutBtn" onclick="signOut()">Sign out</button>
+  <script>
+    startApp();
+  </script>
+</body>
+</html>

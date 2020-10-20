@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>CSS Template Flex Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Esto sirve para controlar mejor las dimensiones de los contenedores. A partir de ahora las 
+propiedades width y height controlarán el ancho y alto total del contenedor, incluyendo contenido, bordes, márgenes y padding .*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+    border: 1px solid;
+    margin: 5px;
+}
+.contenedorflex{
+    display:flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+
+/* Contenedor de flexboxes */
+.row {
+    display: -webkit-flex; /*Compatibilidad con versiones anteriores de Chrome*/
+    display: flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    flex-direction:row;
+}
+/* Creamos tres columnas con el mismo ancho. */
+.column {
+    flex:1;
+    padding: 10px;
+    flex-wrap:wrap;
+}
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .row {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+<body>
+
+
+<main>
+<div class="contendorflex">
+  <div class="row">Cabecera</div>
+  <div class="row">Menu</div>
+  <div class="row">
+        <div class="column">Foto</div>
+        <div class="column">
+                <div class="row">
+                        <div class="column">1</div>
+                        <div class="column">2</div>
+                </div>        
+                <div class="row">
+                        <div class="column">3</div>
+                        <div class="column">4</div>
+                </div>        
+                <div class="row">
+                        <div class="column">5</div>
+                        <div class="column">6</div>
+                </div>        
+
+        </div>
+                
+  </div>
+  <div class="row">Footer</div>
+</div>
+</main>
+
+</body>
+</html>

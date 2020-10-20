@@ -1,0 +1,233 @@
+body {
+  background: #D7F7FE;
+  font-family: "Nunito", sans-serif;
+  color: #222;
+}
+
+* {
+  transition: all .65s ease;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 75em;
+  margin: 0 auto;
+}
+
+.header {
+  background: #FF6067;
+  color: white;
+  padding: 0.625em;
+}
+.header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.header .site-title, .header .site-tagline {
+  font-weight: 400;
+}
+@media (max-width: 700px) {
+  .header .site-title, .header .site-tagline {
+    width: 100%;
+    text-align: center;
+  }
+  .header .site-title {
+    margin: 0;
+  }
+}
+
+.site-title, h1, h2, h3 {
+  font-family: "Pacifico", sans-serif;
+  font-size: 2.625em;
+  color: #024654;
+}
+
+h3 {
+  font-size: 2em;
+  color: #f7686e;
+}
+
+.site-title {
+  color: white;
+}
+
+.site-tagline {
+  font-size: 1.125em;
+  font-style: italic;
+}
+
+.main-nav {
+  background: #F7EE1A;
+  color: white;
+}
+.main-nav a {
+  color: #1A577F;
+  text-decoration: none;
+}
+.main-nav ul, .main-nav li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.main-nav ul a {
+  padding: 0.9375em 2.1875em;
+  display: flex;
+  text-transform: uppercase;
+}
+.main-nav ul a:hover, .main-nav ul a:focus {
+  background: #fbf795;
+  color: #419cd8;
+}
+.main-nav ul .mobile-button a {
+  position: absolute;
+  left: -99999em;
+}
+@media (max-width: 700px) {
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .main-nav ul a {
+    position: absolute;
+    left: -99999em;
+  }
+  .main-nav ul.open li {
+    width: 100%;
+  }
+  .main-nav ul.open li.mobile-button a {
+    background: #fbf78d;
+    color: #0e3447;
+  }
+  .main-nav ul.open a {
+    position: static;
+  }
+  .main-nav ul .mobile-button a {
+    position: static;
+  }
+  .main-nav a {
+    width: 100%;
+  }
+}
+
+.full-bleed {
+  background-size: cover;
+  min-height: 300px;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 700px) {
+  .full-bleed {
+    min-height: 175px;
+  }
+}
+.cool-photo {
+  //background-image: url(http://lorempixel.com/1300/400/abstract);
+    background-image: url(http://placekitten.com/1300/400);
+
+}
+
+.cool-photo2 {
+  background-image: url(http://lorempixel.com/1300/400/food);
+background-image: url(http://placekitten/1300/400);
+}
+
+.post {
+  padding: 1.875em;
+}
+
+.columns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.columns .item {
+  padding: 1.5625em;
+  max-width: 47%;
+  background: #b1dbf0;
+  color: #1A577F;
+  border-bottom: 5px solid #F7EE1A;
+  margin-bottom: 2.1875em;
+  position: relative;
+  overflow: hidden;
+}
+.columns .item .item-title {
+  color: #011d23;
+  font-size: 24px;
+  margin: 0 0 5px 0;
+  font-family: "Righteous", sans-serif;
+}
+.columns .item .item-image {
+  max-width: 100%;
+}
+.columns .item:hover, .columns .item:focus {
+  background: #e8f4fa;
+  border-bottom-color: #FF6067;
+}
+.columns .item:hover .social, .columns .item:focus .social {
+  position: absolute;
+  bottom: -21px;
+  height: auto;
+  z-index: 5;
+  padding: 10px 0;
+}
+.columns .item:hover .social .fa, .columns .item:focus .social .fa {
+  color: #FF6067;
+  padding: 0 0.3125em;
+}
+.columns .item:hover .social .fa:hover, .columns .item:focus .social .fa:hover {
+  color: #769ab2;
+}
+@media (max-width: 660px) {
+  .columns .item {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+.columns.thirds .item {
+  max-width: 31%;
+}
+@media (max-width: 770px) {
+  .columns.thirds .item {
+    max-width: 48%;
+  }
+}
+@media (max-width: 770px) and (max-width: 660px) {
+  .columns.thirds .item {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.columns .social {
+  position: absolute;
+  bottom: -60px;
+  height: 0;
+  z-index: -1;
+  font-size: 1.75em;
+}
+
+.footer {
+  background: #FF6067;
+  color: white;
+  padding: 0.9375em;
+  text-align: center;
+  font-size: 0.8125em;
+}
+.footer a {
+  color: #F7EE1A;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
