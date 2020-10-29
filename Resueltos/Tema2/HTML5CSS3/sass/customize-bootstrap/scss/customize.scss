@@ -1,0 +1,14 @@
+// Your code
+$body-bg: #000;
+$body-color: #111;
+
+// Our Custom sass code
+$theme-colors: (
+  "primary": blue,
+  "danger": coral
+);
+
+
+
+// Bootstrap file partials
+@import "../node_modules/bootstrap/scss/bootstrap";

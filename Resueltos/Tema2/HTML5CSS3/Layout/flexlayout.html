@@ -27,6 +27,8 @@ body {
 .row {
     display: -webkit-flex; /*Compatibilidad con versiones anteriores de Chrome*/
     display: flex;
+    flex-direction: row;
+
 }
 /* Creamos tres columnas con el mismo ancho. */
 .column {
@@ -70,6 +72,9 @@ body {
     .row {
         -webkit-flex-direction: column;
         flex-direction: column;
+    }
+    .column{
+      display:none;
     }
 }
 </style>
