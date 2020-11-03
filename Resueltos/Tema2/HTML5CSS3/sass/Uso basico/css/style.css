@@ -1,0 +1,76 @@
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  color: red; }
+
+#container {
+  width: 680px; }
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+nav li {
+  display: inline-block; }
+
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none; }
+
+.danger {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid blue;
+  background-color: green; }
+
+table.tabla-1 {
+  color: black;
+  border-collapse: collapse;
+  width: 25%; }
+  table.tabla-1 thead {
+    background-color: darkgray; }
+  table.tabla-1 th, table.tabla-1 td {
+    border-bottom: 1px solid black; }
+
+button.boton, button.boton-rojo, button.boton-verde {
+  border-radius: 3px;
+  border: 0;
+  background-color: blue;
+  padding: 10px;
+  font-weight: bold;
+  color: white; }
+
+button.boton-rojo {
+  background-color: red; }
+  button.boton-rojo:hover {
+    background-color: #ff6666; }
+
+button.boton-verde {
+  background-color: green; }
+  button.boton-verde:hover {
+    background-color: #00e600; }
+
+ul {
+  list-style-type: none; }
+  ul li {
+    display: inline-block; }
+
+.cartel-40px {
+  font-size: 40px;
+  height: 40px;
+  width: 40px; }
+
+.cartel-50px {
+  font-size: 50px;
+  height: 50px;
+  width: 50px; }
+
+.cartel-80px {
+  font-size: 80px;
+  height: 80px;
+  width: 80px; }
+
+/*# sourceMappingURL=style.css.map */

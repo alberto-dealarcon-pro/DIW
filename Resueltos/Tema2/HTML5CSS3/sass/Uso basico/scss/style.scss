@@ -1,0 +1,95 @@
+$myFont: Helvetica, sans-serif;
+$myColor: red;
+$myFontSize: 18px;
+$myWidth: 680px;
+
+body {
+  font-family: $myFont;
+  font-size: $myFontSize;
+  color: $myColor;
+}
+
+#container {
+  width: $myWidth;
+}
+
+nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+    }
+  }
+
+  @mixin important-text {
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid blue;
+  }
+  
+  .danger {
+    @include important-text;
+    background-color: green;
+
+  }
+
+  table.tabla-1{
+      color: black;
+      border-collapse: collapse;
+      width:25%;
+      thead {
+          background-color: darkgray;
+      }
+      th, td {
+          border-bottom: 1px solid black;
+      }
+
+  }
+
+  button.boton {
+      border-radius: 3px;
+      border: 0;
+      background-color: blue;
+      padding: 10px;
+      font-weight: bold;
+      color: white;
+  }
+@mixin boton-personalizado($nombre,$color){
+  button.boton-#{$nombre} {
+      @extend button.boton;
+      background-color: $color;
+      &:hover{
+        background-color: lighten($color,20%);    
+      }
+} 
+}
+
+@include boton-personalizado("rojo",red)
+
+@include boton-personalizado("verde",green)
+
+ul {
+  li{
+    display: inline-block;
+  }
+  list-style-type: none;
+}
+
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+  .cartel-#{$size} {
+    font-size: $size;
+    height: $size;
+    width: $size;
+  }
+}
