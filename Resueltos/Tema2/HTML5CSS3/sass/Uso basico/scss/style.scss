@@ -63,6 +63,7 @@ nav {
       font-weight: bold;
       color: white;
   }
+
 @mixin boton-personalizado($nombre,$color){
   button.boton-#{$nombre} {
       @extend button.boton;
@@ -84,7 +85,7 @@ ul {
   list-style-type: none;
 }
 
-$sizes: 40px, 50px, 80px;
+$sizes: 40px, 150px, 180px, 200px;
 
 @each $size in $sizes {
   .cartel-#{$size} {

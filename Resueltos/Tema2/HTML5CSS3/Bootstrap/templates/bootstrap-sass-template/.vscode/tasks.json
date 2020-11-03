@@ -6,7 +6,12 @@
         {
             "label": "Sass Compile",
             "type": "shell",
-            "command": "node-sass -w scss -o css"
+            "command": "node-sass -w scss -o css",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

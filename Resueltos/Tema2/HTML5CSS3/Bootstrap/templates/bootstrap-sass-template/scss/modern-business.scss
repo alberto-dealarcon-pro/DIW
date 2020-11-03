@@ -14,7 +14,7 @@
 .text-primary {
   color: $primary !important;
 }
-
+/*!
 a {
   color: lighten($primary,20) !important;
   &:hover,
@@ -23,6 +23,7 @@ a {
     color: lighten($primary,80) !important;
   }
 }
+*/
 body {
   @include body-font;
   padding-top: 54px;

@@ -63,14 +63,19 @@ ul {
   height: 40px;
   width: 40px; }
 
-.cartel-50px {
-  font-size: 50px;
-  height: 50px;
-  width: 50px; }
+.cartel-150px {
+  font-size: 150px;
+  height: 150px;
+  width: 150px; }
 
-.cartel-80px {
-  font-size: 80px;
-  height: 80px;
-  width: 80px; }
+.cartel-180px {
+  font-size: 180px;
+  height: 180px;
+  width: 180px; }
+
+.cartel-200px {
+  font-size: 200px;
+  height: 200px;
+  width: 200px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -9,11 +9,16 @@
 .text-primary {
   color: #ce7a5a !important; }
 
+/*!
 a {
-  color: #e5baa9 !important; }
-  a:hover, a:focus, a:active {
-    color: white !important; }
-
+  color: lighten($primary,20) !important;
+  &:hover,
+  &:focus,
+  &:active {
+    color: lighten($primary,80) !important;
+  }
+}
+*/
 body {
   font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   padding-top: 54px; }
