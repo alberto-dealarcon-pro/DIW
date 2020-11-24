@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "test",
+			"group": "test",
+			"problemMatcher": [],
+			"label": "npm: test",
+			"detail": "echo \"Error: no test specified\" && exit 1"
+		}
+		{
+            "label": "Sass Compile - compressed and source map",
+            "type": "shell",
+            "command": "node-sass -w scss -o css --source-map true",
+            "group": "build",                       
+        }
+
+
+	]
+}

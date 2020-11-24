@@ -1,0 +1,6 @@
+.btn-custom {
+  background-color: red; }
+  .btn-custom:focus {
+    box-shadow: 0px 0px 0px 2px black; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,11 @@
+@mixin customiza-boton($fondo,$foco){
+    background-color: $fondo;
+    &:focus{
+        //box-shadow: none !important;
+        box-shadow: 0px 0px 0px 2px $foco;
+  }
+}
+
+.btn-custom{
+  @include customiza-boton(red, black);
+}
