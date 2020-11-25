@@ -1,5 +1,6 @@
-@mixin customiza-boton($fondo,$foco){
+@mixin customiza-boton($texto,$fondo,$foco){
     background-color: $fondo;
+    color: $texto;
     &:focus{
         //box-shadow: none !important;
         box-shadow: 0px 0px 0px 2px $foco;
@@ -7,5 +8,68 @@
 }
 
 .btn-custom{
-  @include customiza-boton(red, black);
+  @include customiza-boton(white, blue, black);
+}
+
+html{
+  height: 100%;
+}
+body {
+  height: 100%;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  
+}
+
+.gradiente{
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #70bg32;
+  background-repeat:no-repeat;
+  background: -webkit-linear-gradient( to left top, blue, red);
+  background: -moz-linear-gradient( to left top, blue, red);
+  background: -ms-linear-gradient( to left top, blue, red);
+  background: -o-linear-gradient( to left top, blue, red);
+  background: linear-gradient( to left top, blue, red);
+  
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
