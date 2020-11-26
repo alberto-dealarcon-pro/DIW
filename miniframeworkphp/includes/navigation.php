@@ -2,11 +2,11 @@
   <div class="container">
     <ul>
       <li class="mobile-button"><a href="#">Menu</a></li>
-    <li><a href="about.php">About Us</a></li>
-    <li><a href="work.php">Work</a></li>
-    <li><a href="methods.php">Methods</a></li>
-    <li><a href="results.php">Results</a></li>
-    <li><a href="contact.php">Contact</a></li>
+    <li><a href="about.php" <?php if ($CURRENT_PAGE == "About") { echo "class=\"active\""; } ?>>About Us</a></li>
+    <li><a href="work.php" <?php if ($CURRENT_PAGE == "Work") { echo "class=\"active\""; } ?>>Work</a></li>
+    <li><a href="methods.php" <?php if ($CURRENT_PAGE == "Methods") { echo "class=\"active\""; } ?>>Methods</a></li>
+    <li><a href="results.php" <?php if ($CURRENT_PAGE == "Results") { echo "class=\"active\""; } ?>>Results</a></li>
+    <li><a href="contact.php" <?php if ($CURRENT_PAGE == "Contact") { echo "class=\"active\""; } ?>>Contact</a></li>
   </ul>
   </div>
 </nav>
