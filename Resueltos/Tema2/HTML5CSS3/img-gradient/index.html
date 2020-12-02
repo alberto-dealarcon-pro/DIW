@@ -2,10 +2,20 @@
 <html lang="es">
 <head>
 <style>
-
+body{
+  background-color: black;
+}
+.container{
+  width: 100%;
+  display:flex;
+  justify-content: center;
+}
 .tinted-image {
-  width:500px;
-  height:300px;
+  border-radius:4px;
+  width:512px;
+  height:512px;
+  display:flex;
+  align-items: flex-end;
   background:  
     linear-gradient(
       rgba(0, 0, 0,  0), 
@@ -13,15 +23,18 @@
     ),
     url("./image.jpg");
 }
-.tinted-image h2{
-    margin-top:auto;
+.tinted-image>h2{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: lightgray;
+  margin: 1em;
 }
 </style>
 </head>
 <body>
      
-
-<div class="tinted-image"><h2 style="color:white;">Imagen con gradiente.</h2></div>
+<div class="container">
+<div class="tinted-image"><h2>Metronomy estrena disco en septiembre.</h2></div>
+</div>
 </body>
 </html>
 
