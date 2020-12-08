@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Zombie Survival</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+  <div id="game-over-overlay">
+  </div>
+  <div>
+    <audio autoplay>
+    </audio>
+    <audio id="crunch" src="sound/crunch.wav" autostart="false"></audio>
+    <audio id="gameover" src="sound/gameover.wav" autostart="false"></audio>
+  </div>
+
+  <div id="game-over">
+    <h1>GAME OVER</h1>
+    <h5 style="font-size: 25px;margin-top:10px;margin-bottom:15px;font-family:sans-serif;text-transform:uppercase;">You have been zombified!</h5>
+    <h3 id="game-over-score"></h3>
+    <button id="play-again">Play Again</button>
+  </div>
+
+  <div id="title">
+    <span id="logo"></span>
+    <p style="margin-bottom: 25px; font-family: sans-serif; font-size: 14px; color: white; text-align: center;">
+      You are one of the rare survivors in a zombie apocalypse, stuck in a forest, trying to collect food to feed other survivors.
+      <br>
+      <br> Try to collect the maximum number of apples and avoid the zombies at all cost
+      <br>
+    </p>
+    <p style="max-width: 170px; margin-bottom: 25px; font-family: sans-serif; font-size: 14px;">
+      <span id="score"></span>
+    </p>
+  </div>
+
+  <div id="tutorial">
+    <h4 style="margin-bottom: 25px;">How to play</h4>
+    <p style="max-width: 170px; margin-bottom: 25px; font-family: sans-serif; font-size: 14px;">
+      Use the WASD or arrow keys to move the player around the map.
+      <br>
+    </p>
+    <img src="img/wasd.png" alt="wasd" width="150px" height="98px">
+    <br>
+    <p style="max-width: 170px; margin-bottom: 25px; font-family: sans-serif; font-size: 14px;">
+      Avoid the zombies and collect the apples and try to make the best score possible!
+      <br>
+    </p>
+  </div>
+
+  <script type="text/javascript" src="js/resources.js"></script>
+  <script type="text/javascript" src="js/input.js"></script>
+  <script type="text/javascript" src="js/sprite.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

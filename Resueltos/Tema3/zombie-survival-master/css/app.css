@@ -1,0 +1,117 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../img/goblin_header.png);
+    background-size: cover;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.wrapper {
+    width: 512px;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+#instructions {
+    float: left;
+    font-family: sans-serif;
+    color: black;
+}
+
+#score {
+    float: right;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+#title {
+    width: 250px;
+    margin-top: 25px;
+    margin-left: 30px;
+    float: left;
+}
+
+#title #logo {
+    width: 250px;
+    height: 89px;
+    background: url(../img/logo.png);
+    background-size: cover;
+    display: block;
+}
+
+#tutorial {
+    float: right;
+    margin-right: 70px;
+    color: #fff;
+}
+
+#tutorial h4 {
+    font-family: sans-serif;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+#tutorial img {
+    width: 150px;
+    height: 98px;
+    margin: 0 auto;
+    display: block;
+}
+
+.somestyle {
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+}
+
+.key {
+    color: #aaffdd;
+}
+
+#game-over,
+#game-over-overlay {
+    margin: auto;
+    width: 600px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+    border-radius: 10px;
+}
+
+#game-over-overlay {
+    background-color: black;
+    opacity: .5;
+}
+
+#game-over {
+    height: 350px;
+    text-align: center;
+    color: white;
+}
+
+#game-over h1,
+h3 {
+    font-size: 3em;
+    font-family: sans-serif;
+}
+
+#game-over button {
+    font-size: 1.5em;
+}
