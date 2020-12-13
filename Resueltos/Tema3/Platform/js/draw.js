@@ -119,11 +119,7 @@ var drawModule = (function () {
       createFood();
       gameloop = setInterval(paint, tiempoFrame);
   }
-
-
     return {
       init : init
-    };
-
-    
+    };   
 }());

@@ -5,41 +5,31 @@ de movimiento*/
 var btn = document.getElementById('btn');
 btn.addEventListener("click", function(){ drawModule.init();});
 
-	document.onkeydown = function(event) {
-
-        keyCode = event.keyCode;
-
-        switch(keyCode) {
-        
-        case 37: 
-          if (direction != 'right') { //impide que se mueva a la izquierda si se está moviendo a la derecha
-            direction = 'left';
-          }
-          console.log('left'); 
-          break;
-
-        case 39:
-          if (direction != 'left') {
+document.onkeydown = function(event) {
+    switch (event.key) {
+      case "ArrowLeft":
+        if (direction != 'right') { //impide que se mueva a la izquierda si se está moviendo a la derecha
+          direction = 'left';
+        }
+        break;
+      case "ArrowRight":
+        if (direction != 'left') {
           direction = 'right';
           console.log('right');
-          }
-          break;
-
-        case 38:
-          if (direction != 'down') {
+        }
+        break;
+      case "ArrowUp":
+        if (direction != 'down') {
           direction = 'up';
           console.log('up');
-          }
-          break;
-
-        case 40:
-          if (direction != 'up') {
+        }
+        break;
+      case "ArrowDown":
+        if (direction != 'up') {
           direction = 'down';
           console.log('down');
-          }
-          break;
-          }
-      }
-
-
+        }
+        break;
+    }
+  }
 })(window, document, drawModule);
