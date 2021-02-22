@@ -5,30 +5,45 @@
     <meta charset="UTF-8">
     <meta name="title" content="Título de la WEB">
     <meta name="description" content="Descripción de la WEB">    
-    <link src="stylesheet.css" rel="stylesheet" type="text/css"/>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="stylesheet.css" type="text/css"/>
   </head>  
   <body>    
     <header>
       <h1>Título de la WEB</h1>      
     </header>    
     <nav>
-      <a href="seccion2.html">IR SECCIÓN 2</a>
+      <button class="btn"><i class="fa fa-home"></i>Home</button>
+      <button class="btn"><i class="fa fa-bars"></i></button>
+ <!--     <button class="btn"><i class="fa fa-bars"><span class="sr-only">Menu</span></i></button>
+ -->     
+      
+      <a href="seccion2.html">IR SECCIÓN 2</a></button>
       <a href="seccion3.html">IR SECCIÓN 3</a>
     </nav>
-    <section>      
+    <section>
+      <article>
+        <h2>Formulario</h2>
+        <form action="#">
+          <label for="nombre">Nombre</label>
+          <input type="email" id="nombre"/>
+          <input type="submit"/>
+        </form> 
+        </form>
+      </article>      
       <article>
         <h2>CONTENIDO PRINCIPAL</h2>
         <p>Este es el contenido principal de mi web</p>
         <div role="presentation">
           <p>Aquí tenéis una imagen.</p>
-          <img src="image.jpg"  alt="paisaje">          
+          <img src="image.jpg"  alt="Paisaje">          
         </div>
       </article>      
     </section>
     <aside>
       <h3>Banner de publicidad</h3>
       <a href="http://dominio-externo.com">
-        <img src="banner-publicidad.jpg" alt="banner de publicidad">
+        <img src="banner-publicidad.jpg">
       </a>
       <h3>Testimonios</h3>
       <p>Me gusta mucho esta página.</p>
