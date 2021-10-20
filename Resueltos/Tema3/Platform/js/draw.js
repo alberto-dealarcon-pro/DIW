@@ -33,11 +33,12 @@ var drawModule = (function () {
   //Pinta un "frame" del juego, y controla la acción  
   var paint = function(){
       //Repintamos todo el fondo
+      
       ctx.fillStyle = 'lightgrey';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = 'black';
       ctx.strokeRect(0, 0, w, h);
-
+      
       btn.setAttribute('disabled', true);
 
       //Obtenemos las coordenadas de la cabeza 

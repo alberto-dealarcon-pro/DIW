@@ -33,6 +33,7 @@ button:hover {
 
 #seek-bar {
 	width: 360px;
+    background-color: red;	
 }
 
 #volume-bar {

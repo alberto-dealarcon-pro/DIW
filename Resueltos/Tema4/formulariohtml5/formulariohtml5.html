@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Ejemplo layout bootstrap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <style>
+
+body{
+    margin:10px;
+}
+form {
+  font: 1em sans-serif;
+  max-width: 320px;
+}
+
+p > label {
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+{
+  width : 100%;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+fieldset {
+  width : 100%;
+  box-sizing: border-box;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+  box-shadow: none;
+}
+  </style>
+  
+</head>
+
+<body>
+
+<form id="form1">
+  <p>
+    <fieldset>
+      <legend>¿Tienes carné de conducir?*</legend>
+      <!-- Solo se puede seleccionar un botón de opción en un grupo con el mismo nombre,
+           y, por lo tanto, solo un botón de opción en un grupo con el mismo nombre que tiene marcado el atributo «requerido»
+           basta para hacer de una selección un requisito -->
+      <input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Sí</label>
+      <input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
+    </fieldset>
+  </p>
+  <p>
+    <label for="n1">¿Qué edad tienes?</label>
+    <!-- El atributo pattern puede actuar como una alternativa para los navegadores que
+         no implementan el tipo de entrada de número, pero admiten el atributo pattern.
+         Ten en cuenta que los navegadores que admiten el atributo pattern lo harán
+         fallar silenciosamente cuando se use con un campo numérico.
+         Su uso aquí solo actúa como una alternativa -->
+     <input type="number" min="12" max="120" step="1" id="n1" name="age"
+           pattern="\d+">
+  </p>
+  <p>
+    <label for="t1">¿Cuál es tu fruta favorita?*</label>
+    <input type="text" id="t1" name="fruit" list="l1" required
+           pattern="[Pl]átano|[Cc]ereza|[Mm]anzana|[F]resa|[Ll]imón|[Nn]aranja">
+    <datalist id="l1">
+      <option>Plátano</option>
+      <option>Cereza</option>
+      <option>Manzana</option>
+      <option>Fresa</option>
+      <option>Limón</option>
+      <option>Naranja</option>
+     </datalist>
+  </p>
+  <p>
+    <label for="t2">¿Cuál es tu dirección de correo electrónico? </label>
+    <input type="email" id="t2" name="email">
+  </p>
+  <p>
+    <label for="t3">Deja un mensaje</label>
+    <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
+  </p>
+  <p>
+
+    <button onclick="form1.validate();">Enviar</button>
+  </p>
+</form>
+</body>
+</html>

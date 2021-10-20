@@ -1,6 +1,8 @@
 window.onload = function() {
 
 	// Video
+	var latch=false;
+	var time=0;
 	var video = document.getElementById("video");
 
 	// Buttons
@@ -60,22 +62,42 @@ window.onload = function() {
 		}
 	});
 
+	seekBar.addEventListener("click", function() {
+		console.log("Click");
+		time = video.duration * (seekBar.value / 100);
+		console.log("después de esperar");
+		video.currentTime = time;
+		var value =(100 / video.duration) * time;
+			// Update the slider value
+		seekBar.value = value;		
+	});
+	seekBar.addEventListener("mouseup", function() {
+		console.log("Click");
+		time = video.duration * (seekBar.value / 100);
+		console.log("después de esperar");
+		video.currentTime = time;
+		var value =(100 / video.duration) * time;
+			// Update the slider value
+		seekBar.value = value;		
+	});
+
 
 	// Event listener for the seek bar
 	seekBar.addEventListener("change", function() {
+		console.log("Change");
 		// Calculate the new time
-		var time = video.duration * (seekBar.value / 100);
-
-		// Update the video time
-		video.currentTime = time;
+		//var time = video.duration * (seekBar.value / 100);
+		//video.currentTime = time;
 	});
-
+	
+	
 	
 	// Update the seek bar as the video plays
 	video.addEventListener("timeupdate", function() {
+		console.log("Time update");
 		// Calculate the slider value
-		var value = (100 / video.duration) * video.currentTime;
-
+		time = video.currentTime;
+		var value =(100 / video.duration) * time;
 		// Update the slider value
 		seekBar.value = value;
 	});
