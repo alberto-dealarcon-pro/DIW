@@ -19,7 +19,7 @@
 			"problemMatcher": [],
 			"label": "npm: test",
 			"detail": "echo \"Error: no test specified\" && exit 1"
-		}
+		},
 		{
             "label": "Sass Compile - compressed and source map",
             "type": "shell",
