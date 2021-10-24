@@ -2,7 +2,7 @@
   background-color: blue;
   color: white; }
   .btn-custom:focus {
-    box-shadow: 0px 0px 0px 2px black; }
+    box-shadow: 0px 0px 2px 2px black; }
 
 html {
   height: 100%; }
@@ -54,7 +54,7 @@ body {
   z-index: 2; }
 
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 

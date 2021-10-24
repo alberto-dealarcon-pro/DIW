@@ -3,7 +3,7 @@
     color: $texto;
     &:focus{
         //box-shadow: none !important;
-        box-shadow: 0px 0px 0px 2px $foco;
+        box-shadow: 0px 0px 2px 2px $foco;
   }
 }
 
@@ -64,7 +64,7 @@ body {
   z-index: 2;
 }
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
