@@ -11,8 +11,9 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
     box-sizing: border-box;
 }
 
-body {
+body, html, .contenedorflex {
     font-family: Arial, Helvetica, sans-serif;
+    height:100%;
 }
 
 div {
@@ -29,20 +30,23 @@ div {
 .row {
     display: -webkit-flex; /*Compatibilidad con versiones anteriores de Chrome*/
     display: flex;
-    justify-content: center;
+    flex: 1;
     flex-wrap:wrap;
     flex-direction:row;
 }
 /* Creamos tres columnas con el mismo ancho. */
 .column {
+    display: flex;
     flex:1;
     padding: 10px;
     flex-wrap:wrap;
+    flex-direction:column;
 }
 
 .display-sm-none {
     display: block;
 }
+
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {
@@ -66,7 +70,7 @@ div {
   <div class="row">Cabecera</div>
   <div class="row">Menu</div>
   <div class="row">
-        <div class="column display-sm-none">Foto</div>
+        <div class="column display-sm-none"><img src="http://lorempixel.com/400/400"></div>
         <div class="column">
                 <div class="row">
                         <div class="column">1</div>
