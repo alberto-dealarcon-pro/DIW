@@ -8,6 +8,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+  <script>
+    function myFunction() {
+      if (window.innerWidth !== undefined && window.innerHeight !== undefined) {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+      } else {
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;
+      }
+      var txt = "Ancho: width=" + w + ", alto=" + h;
+      document.getElementById("demo").innerHTML = txt;
+    }
+  </script>
   <style>
     div {
       border: 1px solid;
@@ -19,8 +32,8 @@
   
 </head>
 
-<body>
-  <br>
+<body onresize="myFunction()" onload="myFunction()">
+  <p id="demo">Ancho</p>
   <h2>Container (ancho fijo).</h2>
   <div class="container">
     <div class="row">
