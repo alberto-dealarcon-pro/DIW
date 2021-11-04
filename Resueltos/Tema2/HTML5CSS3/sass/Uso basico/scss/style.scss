@@ -29,19 +29,21 @@ nav {
     }
   }
 
-  @mixin important-text {
-    color: red;
+  @mixin important-text($color_texto) {
+    color: $color_texto;
     font-size: 25px;
     font-weight: bold;
     border: 1px solid blue;
   }
   
   .danger {
-    @include important-text;
+    @include important-text(red);
     background-color: green;
 
   }
-
+  h1 {
+    @include important-text(red);
+  }
   table.tabla-1{
       color: black;
       border-collapse: collapse;
@@ -94,4 +96,6 @@ $sizes: 40px, 150px, 180px, 200px;
     width: $size;
 
   }
+  
 }
+
