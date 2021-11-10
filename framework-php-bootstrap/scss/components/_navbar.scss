@@ -16,7 +16,7 @@
         margin-top: 1rem;
 
         li.nav-item {
-            a.nav-link {
+            a.nav-link a.dropdown-item {
                 color: $white;
 
                 &:hover {
@@ -40,6 +40,7 @@
         padding: 0.8rem;
     }
 }
+
 
 @include media-breakpoint-up(lg) {
     #mainNav {

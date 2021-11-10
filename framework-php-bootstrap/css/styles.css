@@ -7898,13 +7898,13 @@ html {
     color: #fff; }
   #mainNav .navbar-nav {
     margin-top: 1rem; }
-    #mainNav .navbar-nav li.nav-item a.nav-link {
+    #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item {
       color: #fff; }
-      #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+      #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item:hover {
         color: #ff7700; }
-      #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+      #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item:active, #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item:focus {
         color: #fff; }
-      #mainNav .navbar-nav li.nav-item a.nav-link.active {
+      #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item.active {
         color: #ff7700; }
   #mainNav .navbar-toggler {
     font-size: 80%;
