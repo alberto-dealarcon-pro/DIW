@@ -32,6 +32,14 @@
                     color: $primary;
                 }
             }
+            div.dropdown-menu{
+                a.dropdown-item{
+                    &:hover {
+                        background-color: $primary;
+
+                    }
+                }
+            }
         }
     }
 

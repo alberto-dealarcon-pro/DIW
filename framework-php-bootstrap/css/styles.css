@@ -7906,6 +7906,8 @@ html {
         color: #fff; }
       #mainNav .navbar-nav li.nav-item a.nav-link a.dropdown-item.active {
         color: #ff7700; }
+    #mainNav .navbar-nav li.nav-item div.dropdown-menu a.dropdown-item:hover {
+      background-color: #ff7700; }
   #mainNav .navbar-toggler {
     font-size: 80%;
     padding: 0.8rem; }

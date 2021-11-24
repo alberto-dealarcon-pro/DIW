@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<style>
+.fondo{
+  background-color: white;
+}
+.container{
+  width: 100%;
+  display:flex;
+  justify-content: center;
+}
+.fondo-degradado {
+  height: 20vw;
+  border-radius:0.5vw;
+  display:flex;
+  flex-grow:1;
+  background:  
+    linear-gradient(to right,
+      rgba(0, 0, 0,  1) 75%, 
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url("./basket.wepb") no-repeat;
+    background-position: top right;
+    background-size: contain;
+  }
+.card{
+  width:25%;
+  padding: 1vw;
+}
+.card h1{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  font-size: 3vw;
+}
+.card p {
+  color: white;
+  font-size: 1.5vw;
+}
+
+</style>
+</head>
+<body class="fondo">
+     
+<div class="container">
+<div class="fondo-degradado">
+  <div class="card">
+  <h1>Baloncesto</h1>
+  <p> Nuestras instalaciones cuentan con dos pistas de baloncesto. Además podrás asistir a clases en horario de mañana y de tarde, 
+  formar parte de nuestro equipo.
+  </p> 
+  </div>
+</div>
+</body>
+</html>
+
