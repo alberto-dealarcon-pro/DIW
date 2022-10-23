@@ -31,18 +31,15 @@ body {
 
 }
 /* Creamos tres columnas con el mismo ancho. */
-.column {
-    -webkit-flex: 1;
-    -ms-flex: 1;   
-    flex: 1;   /* La columna queda a la izquierda de la siguiente */
+.column {   
+    flex-grow:1;
     padding: 10px;
     height: 300px; /* Eliminar cuando insertemos contenido. */
+    
 }
 
-.column2 {
-    -webkit-flex: 2;
-    -ms-flex: 2;   
-    flex: 2;   /* La columna queda a la izquierda de la siguiente */
+.column2 {   
+    flex-grow:4;
     padding: 10px;
     height: 300px; /* Eliminar cuando insertemos contenido. */
 }
@@ -70,12 +67,9 @@ body {
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {
     .row {
-        -webkit-flex-direction: column;
         flex-direction: column;
     }
-    .column{
-      display:none;
-    }
+    
 }
 </style>
 </head>

@@ -8,7 +8,7 @@
 }
 
 .btn-custom{
-  @include customiza-boton(white, blue, black);
+  @include customiza-boton(white, blue, red);
 }
 
 html{

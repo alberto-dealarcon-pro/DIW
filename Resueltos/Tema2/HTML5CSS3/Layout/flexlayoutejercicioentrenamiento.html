@@ -1,96 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<title>CSS Template Flex Layout</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-/* Esto sirve para controlar mejor las dimensiones de los contenedores. A partir de ahora las 
+    <title>CSS Template Flex Layout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Esto sirve para controlar mejor las dimensiones de los contenedores. A partir de ahora las 
 propiedades width y height controlarán el ancho y alto total del contenedor, incluyendo contenido, bordes, márgenes y padding .*/
-* {
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-body, html, .contenedorflex {
-    font-family: Arial, Helvetica, sans-serif;
-    height:100%;
-}
+        body,
+        html,
+        .contenedorflex {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-div {
-    border: 1px solid;
-    margin: 5px;
-}
-.contenedorflex{
-    display:flex;
-    flex-direction:column;
-    flex-wrap: wrap;
-}
+        div {
+            border: 1px solid;
+            margin: 0px;
+        }
 
-/* Contenedor de flexboxes */
-.row {
-    display: -webkit-flex; /*Compatibilidad con versiones anteriores de Chrome*/
-    display: flex;
-    flex: 1;
-    flex-wrap:wrap;
-    flex-direction:row;
-}
-/* Creamos tres columnas con el mismo ancho. */
-.column {
-    display: flex;
-    flex:1;
-    padding: 10px;
-    flex-wrap:wrap;
-    flex-direction:column;
-}
+        .contenedorflex {
+            max-width: 800px;
+            margin: auto;
+        }
 
-.display-sm-none {
-    display: block;
-}
+        /* Contenedor de flexboxes */
+        .row {
+            display: -webkit-flex;
+            /*Compatibilidad con versiones anteriores de Chrome*/
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
 
+        /* Creamos tres columnas con el mismo ancho. */
+        .column {
+            display: flex;
+            padding: 10px;
+            flex: 1;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-    .row {
-        -webkit-flex-direction: column;
-        flex-direction: column;
-    }
+        .display-sm-none {
+            display: block;
+        }
 
-    .display-sm-none {
-      display: none;
-    }
+        .floatingimage {
+            justify-content: left;
+            width: 50px;
+            height: 50px;
+        }
 
-}
-</style>
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .row {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .display-sm-none {
+                display: none;
+            }
+
+            .justify-around  {
+                float: left;
+                margin: 5px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <div class="contenedorflex">
+        <div class="row">Cabecera</div>
+        <div class="row">Menu</div>
+        <div class="row">
+            <div class="column display-sm-none"><img src="https://picsum.photos/400"></div>
+            <div class="column">
+                <div class="row">
+                    <div class="column">It is a long established fact that a reader will be distracted by the readable
+                        content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                        more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
+                        making it look like readable English. Many desktop publishing packages and web page editors now
+                        use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
+                        web sites still in their infancy. Various versions have evolved over the years, sometimes by
+                        accident, sometimes on purpose (injected humour and the like).</div>
+                    <div class="column"><img class="floatingimage justify-around" src="https://picsum.photos/50/50" />
+                        It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout. The point of using Lor
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column"><img class="floatingimage" src="https://picsum.photos/50">Contrary to popular
+                        belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                        literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                        Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                        from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
+                        discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
+                        Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
+                        book is a treatise on the theory of ethics, very popular during the Renaissance. The first line
+                        of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</div>
+                    <div class="column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam libero quam,
+                        pulvinar nec augue et, posuere elementum diam. Sed non faucibus nulla. Maecenas posuere arcu at
+                        libero consequat, et ullamcorper leo eleifend. Integer ut efficitur ex, vitae pharetra sapien.
+                        Etiam tincidunt magna elementum nisi egestas, sit amet facilisis diam consectetur. Proin posuere
+                        ante hendrerit, congue sapien ac, luctus lacus. Nullam rhoncus leo nec luctus finibus. Mauris
+                        posuere, velit at volutpat sodales, ante lacus placerat mi, eu scelerisque neque augue at sem.
+                        Sed eget lobortis justo.</div>
+                </div>
+                <div class="row">
+                    <div class="column">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                        in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                        McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more
+                        obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the
+                        word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by
+                        Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during
+                        the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a
+                        line in section 1.10.32.</div>
+                    <div class="column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam libero quam,
+                        pulvinar nec augue et, posuere elementum diam. Sed non faucibus nulla. Maecenas posuere arcu at
+                        libero consequat, et ullamcorper leo eleifend. Integer ut efficitur ex, vitae pharetra sapien.
+                        Etiam tincidunt magna elementum nisi egestas, sit amet facilisis diam consectetur. Proin posuere
+                        ante hendrerit, congue sapien ac, luctus lacus. Nullam rhoncus leo nec luctus finibus. Mauris
+                        posuere, velit at volutpat sodales, ante lacus placerat mi, eu scelerisque neque augue at sem.
+                        Sed eget lobortis justo.</div>
+                </div>
 
-
-<main>
-<div class="contendorflex">
-  <div class="row">Cabecera</div>
-  <div class="row">Menu</div>
-  <div class="row">
-        <div class="column display-sm-none"><img src="http://lorempixel.com/400/400"></div>
-        <div class="column">
-                <div class="row">
-                        <div class="column">1</div>
-                        <div class="column">2</div>
-                </div>        
-                <div class="row">
-                        <div class="column">3</div>
-                        <div class="column">4</div>
-                </div>        
-                <div class="row">
-                        <div class="column">5</div>
-                        <div class="column">6</div>
-                </div>        
+            </div>
 
         </div>
-                
-  </div>
-  <div class="row">Footer</div>
-</div>
-</main>
+        <div class="row">Footer</div>
+    </div>
 
 </body>
+
 </html>
