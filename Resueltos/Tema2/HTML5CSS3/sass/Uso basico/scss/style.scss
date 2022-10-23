@@ -68,7 +68,7 @@ nav {
 
 @mixin boton-personalizado($nombre,$color){
   button.boton-#{$nombre} {
-      @extend button.boton;
+      @extend button, .boton;
       background-color: $color;
       &:hover{
         background-color: lighten($color,20%);    
@@ -76,9 +76,9 @@ nav {
 } 
 }
 
-@include boton-personalizado("rojo",red)
+@include boton-personalizado("rojo",red);
 
-@include boton-personalizado("verde",green)
+@include boton-personalizado("verde",green);
 
 ul {
   li{
