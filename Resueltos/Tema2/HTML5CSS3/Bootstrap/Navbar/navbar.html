@@ -18,15 +18,15 @@
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="logo.png" alt="Logo" style="width:40px;">
+      <img class="navbar-logo" src="logo.png" alt="Logo">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Lo siguiente se mostrará colapsado en dispositivos pequeños (navbar-expand-sm) -->
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse" id="collapsingNavbar">
+      <ul class="navbar-nav ms-2">
         <li class="nav-item">
           <a class="nav-link" href="#">Enlace 1</a>
         </li>
@@ -36,26 +36,24 @@
 
         <!-- Menú desplegable -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-bs-toggle="dropdown">
             Dropdown link
           </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Link 1</a>
-            <a class="dropdown-item" href="#">Link 2</a>
-            <a class="dropdown-item" href="#">Link 3</a>
-          </div>
+          <ul class="dropdown-menu m-2">
+            <li><a class="dropdown-item" href="#">Link 1</a></li>
+            <li><a class="dropdown-item" href="#">Link 2</a></li>
+            <li><a class="dropdown-item" href="#">Link 3</a></li>
+          </ul>
         </li>
       </ul>
-      
-        <form class="row" action="/action_page.php">
-            <div class="col">
-              <input class="form-control mr-2" type="text" placeholder="Search">
-            </div>
-            <div class="col">
-              <button class="btn btn-success" type="submit">Buscar</button>
-            </div>
+      <!--Búsqueda-->
+      <div class="ms-auto">
+        <!--La clase ml-auto "empuja a los demás elementos a la izquierda"-->
+        <form class="d-flex flex-row" action="/action_page.php">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-success me-4" type="submit">Buscar</button>
         </form>
-      
+      </div>
     </div>
   </nav>
 </body>
