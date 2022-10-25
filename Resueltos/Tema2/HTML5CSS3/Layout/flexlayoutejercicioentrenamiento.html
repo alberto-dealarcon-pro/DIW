@@ -21,6 +21,7 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
         div {
             border: 1px solid;
             margin: 0px;
+            padding: 0px;
         }
 
         .contenedorflex {
@@ -40,7 +41,7 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
         /* Creamos tres columnas con el mismo ancho. */
         .column {
             display: flex;
-            padding: 10px;
+            padding: 0px;
             flex: 1;
             flex-wrap: wrap;
             flex-direction: column;
@@ -51,7 +52,7 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
         }
 
         .floatingimage {
-            justify-content: left;
+            float:left;
             width: 50px;
             height: 50px;
         }
@@ -96,7 +97,9 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
                     </div>
                 </div>
                 <div class="row">
-                    <div class="column"><img class="floatingimage" src="https://picsum.photos/50">Contrary to popular
+                    <div class="column">
+                        <div class="box">
+                        <img class="floatingimage" src="https://picsum.photos/50">Contrary to popular
                         belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
                         literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
                         Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
@@ -104,7 +107,10 @@ propiedades width y height controlarán el ancho y alto total del contenedor, in
                         discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
                         Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
                         book is a treatise on the theory of ethics, very popular during the Renaissance. The first line
-                        of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</div>
+                        of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                        
+                        </div>
+                    </div>
                     <div class="column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam libero quam,
                         pulvinar nec augue et, posuere elementum diam. Sed non faucibus nulla. Maecenas posuere arcu at
                         libero consequat, et ullamcorper leo eleifend. Integer ut efficitur ex, vitae pharetra sapien.
