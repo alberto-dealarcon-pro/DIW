@@ -16,5 +16,5 @@ Esto instalará en la carpeta "node_modules" todos los paquetes especificados en
 
 Una vez hecho esto, ya podemos compilar los ficheros scss con el comando:
 
-node-sass -w scss -o css
+sass -w scss:css
 
