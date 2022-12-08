@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var player6 = new BootstrapVideoplayer('player-6')
     var player7 = new BootstrapVideoplayer('player-7')
     var player8 = new BootstrapVideoplayer('player-8')
+    var player8 = new BootstrapVideoplayer('player-9')
 
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
