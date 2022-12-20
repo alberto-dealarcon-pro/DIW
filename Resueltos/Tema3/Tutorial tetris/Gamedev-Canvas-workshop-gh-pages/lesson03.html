@@ -39,9 +39,11 @@
 
         x += dx;
         y += dy;
+        requestAnimationFrame(draw);    
     }
 
-    setInterval(draw, 10);
+    //setInterval(draw, 10);
+    requestAnimationFrame(draw);
 </script>
 
 </body>

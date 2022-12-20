@@ -100,35 +100,35 @@ class BootstrapVideoplayer{
         console.log('implement PIP here!')
     }
 
+    updateProgressBar (){
+        var percentPlayed = Math.floor(video.currentTime / (video.duration/100))
+        if(percentPlayed < 100){
+            progressbar.style.width = percentPlayed + '%'
+            requestAnimationFrame(this.updateProgressBar);
+        }
+        else if(percentPlayed === 100){
+            progressbar.style.width = '100%'
+            clearInterval(this)
+            video.pause()
+            video.currentTime = 0
+            video.playing = false
+            button.querySelector('.bi-play-fill').classList.remove('d-none')
+            button.querySelector('.bi-pause-fill').classList.add('d-none')
+        }
+    }
     playpause(video,button,progressbar){
         if(video.playing === true){
             video.pause()
             button.querySelector('.bi-play-fill').classList.remove('d-none')
             button.querySelector('.bi-pause-fill').classList.add('d-none')
             video.playing = false
-            clearInterval(video.listener)
         }
         else{
             video.play()
             button.querySelector('.bi-play-fill').classList.add('d-none')
             button.querySelector('.bi-pause-fill').classList.remove('d-none')
             video.playing = true
-            var listener = setInterval(function(){
-                var percentPlayed = Math.floor(video.currentTime / (video.duration/100))
-                if(percentPlayed < 100){
-                    progressbar.style.width = percentPlayed + '%'
-                }
-                else if(percentPlayed === 100){
-                    progressbar.style.width = '100%'
-                    clearInterval(this)
-                    video.pause()
-                    video.currentTime = 0
-                    video.playing = false
-                    button.querySelector('.bi-play-fill').classList.remove('d-none')
-                    button.querySelector('.bi-pause-fill').classList.add('d-none')
-                }
-            },200)
-            video.listener = listener
+            requestAnimationFrame(this.updateProgressBar);
         }
     }
 
