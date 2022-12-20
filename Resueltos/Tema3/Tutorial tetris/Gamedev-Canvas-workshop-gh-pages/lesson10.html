@@ -10,6 +10,11 @@
 <canvas id="myCanvas" width="480" height="320"></canvas>
 
 <script>
+    var stop = false;
+    var frameCount = 0;
+    //var $results = $("#results");
+
+    var fps, fpsInterval, startTime, now, then, elapsed;
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     var ballRadius = 10;
@@ -122,12 +127,24 @@
         ctx.fillText("Score: "+score, 8, 20);
     }
     function drawLives() {
+        var sinceStart = now - startTime;
+        var currentFps = Math.round(1000 / (sinceStart / ++frameCount) * 100) / 100;
         ctx.font = "16px Arial";
         ctx.fillStyle = "#0095DD";
         ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+        ctx.fillText("FPS: "+currentFps, canvas.width-65, 40);
     }
 
     function draw() {
+        now = Date.now();
+        elapsed = now - then;
+
+    // if enough time has elapsed, draw the next frame
+    console.log("Elapsed:"+elapsed);
+    console.log("fpsInterval:"+fpsInterval);
+    
+    //if (elapsed > fpsInterval) {
+        then = now - (elapsed % fpsInterval);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBricks();
         drawBall();
@@ -171,8 +188,13 @@
 
         x += dx;
         y += dy;
+    //    }
         requestAnimationFrame(draw);
     }
+    fps=60;
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
 
     draw();
 </script>

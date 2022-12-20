@@ -24,7 +24,7 @@ var drawModule = (function () {
   //Crea la serpiente inicial, que es un array de tuplas
   //La cabeza de la serpiente está en la posición 0 del array
   var createSnake = function() {
-      var length = 20;
+      var length = snakeSize;
       snake = [];
       for (var i = length-1; i>=0; i--) {
           snake.push({x:i, y:0});
