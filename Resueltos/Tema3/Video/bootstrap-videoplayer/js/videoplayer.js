@@ -100,15 +100,14 @@ class BootstrapVideoplayer{
         console.log('implement PIP here!')
     }
 
-    updateProgressBar (){
+    updateProgressBar(video,button,progressbar){
         var percentPlayed = Math.floor(video.currentTime / (video.duration/100))
         if(percentPlayed < 100){
             progressbar.style.width = percentPlayed + '%'
-            requestAnimationFrame(this.updateProgressBar);
+            requestAnimationFrame(()=>{this.updateProgressBar(video,button,progressbar)});
         }
         else if(percentPlayed === 100){
             progressbar.style.width = '100%'
-            clearInterval(this)
             video.pause()
             video.currentTime = 0
             video.playing = false
@@ -128,7 +127,7 @@ class BootstrapVideoplayer{
             button.querySelector('.bi-play-fill').classList.add('d-none')
             button.querySelector('.bi-pause-fill').classList.remove('d-none')
             video.playing = true
-            requestAnimationFrame(this.updateProgressBar);
+            requestAnimationFrame(()=>{this.updateProgressBar(video,button,progressbar)});
         }
     }
 
