@@ -4,8 +4,7 @@
         <button class="navbar-toggler text-uppercase font-weight-bold text-white rounded" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars fa-2x"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
