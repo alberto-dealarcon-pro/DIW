@@ -10,6 +10,9 @@
 .btn-custom{
   @include customiza-boton(white, blue, red);
 }
+.btn-custom2{
+  @include customiza-boton(black, grey, green);
+}
 
 html{
   height: 100%;
