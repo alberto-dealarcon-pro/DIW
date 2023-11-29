@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/konva@9.2.3/konva.min.js"></script>
+  <meta charset="utf-8" />
+  <title>Konva Rect Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    function detectarColision(o1, o2) {
+
+      return (
+        o1.x() < o2.x() + o2.width() &&
+        o1.x() + o1.width() > o2.x() &&
+        o1.y() < o2.y() + o2.height() &&
+        o1.y() + o1.height() > o2.y()
+      );
+    }
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var vidas = 1;
+    var puntos = 0;
+    var velocidadCircle = 5;
+    var dying = 0;
+
+    //el objeto Stage contendrá todas las capas del juego
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: width,
+      height: height,
+    });
+    //Creamos una capa para el fondo (el suelo y el cielo)
+    var fondo = new Konva.Layer();
+    stage.add(fondo);
+
+    //Suelo
+    var cielo = new Konva.Rect({
+      x: 0,
+      y: 0,
+      width: width,
+      height: height,
+      fillLinearGradientStartPoint: { x: width / 2, y: 0 },
+      fillLinearGradientEndPoint: { x: width / 2, y: height },
+      fillLinearGradientColorStops: [0, 'blue', 1, 'orange']
+    });
+
+    fondo.add(cielo);
+
+    //Suelo
+    var rect1 = new Konva.Rect({
+      x: 0,
+      y: height * 0.75,
+      width: width,
+      height: height * 0.25,
+      fill: 'green',
+    });
+    // add the shape to the layer
+    fondo.add(rect1);
+
+    //Creamos otra capa para los objetos en primer plano
+
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+
+    //nube
+    var nube = null;
+    var nube2 = null;
+
+    var imageObj = new Image();
+    //el objeto nube solo se puede crear una vez cargada la imagen
+    imageObj.onload = function () {
+      nube = new Konva.Image({
+        x: width - 200,
+        y: 50,
+        image: imageObj,
+        width: 106,
+        height: 118,
+      });
+      //Clonamos la primera nube para crear la segunda
+      nube2 = nube.clone();
+      nube2.y(200);
+
+      layer.add(nube);
+      layer.add(nube2);
+
+    };
+    imageObj.src = 'assets/nube.png';
+
+    var vidasText = new Konva.Text({
+      x: 10,
+      y: 10,
+      text: '',
+      fontSize: 16,
+      fontFamily: 'Calibri',
+      fill: 'black',
+      text: 'Vidas:' + vidas
+    });
+    layer.add(vidasText);
+
+    var puntosText = new Konva.Text({
+      x: 10,
+      y: 30,
+      text: '',
+      fontSize: 16,
+      fontFamily: 'Calibri',
+      fill: 'black',
+      text: 'Puntos:' + puntos
+    });
+
+    layer.add(puntosText);
+
+    // add the layer to the stage
+
+    var heroSpriteImage = new Image();
+    heroSpriteImage.src =
+      "https://opengameart.org/sites/default/files/hero_spritesheet_0.png";
+
+    var animations = {
+      standing: [0, 0, 80, 94],
+      walking: [0, 94, 80, 94,
+        80, 94, 80, 94,
+        160, 94, 80, 94,
+        240, 94, 80, 94,
+        320, 94, 80, 94,
+        400, 94, 80, 94],
+      jumping: [0, 282, 80, 94,
+        80, 282, 80, 94,
+        160, 282, 80, 94],
+      falling: [242, 280, 80, 94,
+        322, 280, 80, 94,
+        409, 280, 80, 94,
+        506, 273, 80, 94]
+    };
+    var heroA = null;
+    heroSpriteImage.onload = function () {
+      heroA = new Konva.Sprite({
+        x: width * 0.25,
+        y: rect1.y() - 90,
+        image: heroSpriteImage,
+        animation: 'walking',
+        animations: animations,
+        frameRate: 5,
+        frameIndex: 0,
+        width: 80,
+        height: 94
+      });
+
+      layer.add(heroA);
+
+    }
+
+    var circle = new Konva.Circle({
+      x: stage.width() - 20,
+      y: rect1.y() - 10,
+      radius: 10,
+      fill: 'white',
+      stroke: 'black',
+      strokeWidth: 1
+    });
+
+    // add the shape to the layer
+    layer.add(circle);
+
+    var container = stage.container();
+    //Esto hace que el div container pueda recibir el foco y capture los eventos de teclado
+    container.tabIndex = 1;
+    container.focus();
+    var keysalto = 0;
+
+    container.addEventListener('keydown', function (e) {
+      if ((e.keyCode === 32) && (keysalto <= 0)) {
+        keysalto = 60;
+      }
+      e.preventDefault();
+    });
+
+    //La clase Animation permite llamar a una función de repintado, que será
+    //donde movamos los objetos de nuestro juego
+    var anim = new Konva.Animation(function (frame) {
+      var time = frame.time,
+        timeDiff = frame.timeDiff,
+        frameRate = frame.frameRate;
+
+      //Desplazamos las nubes hacia la izquierda de forma rotativa
+      nube.x(nube.x() - 3);
+      if (nube.x() < (-nube.width()))
+        nube.x(width);
+
+      nube2.x(nube2.x() - 5);
+      if (nube2.x() < (-nube2.width()))
+        nube2.x(width);
+
+      puntosText.text('Puntos:' + Math.round(frame.time / 100));
+
+      var aceleracion = 0;
+      if (keysalto >= 0) {
+        //La aceleración es negativa al principio, y positiva cuando keysalto<30.
+        //Eso hará que el personaje primero se desplaza hacia arriba y luego hacia abajo
+        aceleracion = (30 - keysalto) / 30.0;
+        heroA.y(heroA.y() + aceleracion * 5);
+        keysalto--;
+      }
+
+      circle.x(circle.x() - velocidadCircle);
+
+      //La variable dying controla el número de frames que el personaje estará
+      //en caida cuando choque con el obstáculo
+      if (dying == 0) {
+        if (detectarColision(heroA, circle)) {
+          heroA.animation('falling');
+          vidasText.text('Vidas:' + --vidas);
+          circle.x(stage.width() - 10);
+          velocidadCircle = 5;
+          dying = 30;
+        } else if (circle.x() <= 0) {
+          circle.x(stage.width() - 10);
+          velocidadCircle += 2;
+        }
+
+      } else {
+        dying--;
+        if (dying == 0) {
+          if (vidas == 0) {
+            heroA.y(rect1.y() - 90);
+            anim.stop();
+            heroA.frameIndex(3);
+            heroA.stop()
+          } else
+            heroA.animation('walking');
+        }
+      }
+
+      // update stuff
+    }, layer);
+
+    //La animación comienza cuando todos los elementos de la ventana estén cargados
+    window.onload = function () {
+      heroA.start();
+      anim.start();
+    }
+
+  </script>
+</body>
+
+</html>
