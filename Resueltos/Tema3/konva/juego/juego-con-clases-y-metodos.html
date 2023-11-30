@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/konva@9.2.3/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Rect Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        #juego{
+            display:flex;
+            align-items: center;
+            flex-direction:column;
+        }
+        #container {
+            background-color:blue;
+            width: 1024px;
+            height: 640px;
+        }
+        #btncomenzar{
+            font-size: 20px;
+            margin-top: 20px
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="juego">
+        <div id="container"></div>
+        <button id="btncomenzar" onclick="cargaJuego();">Comenzar</button>
+    </div>
+    
+    <script>
+        class SaltaBola {
+            constructor(c, vidas) {
+                this.width = document.getElementById(c).offsetWidth;
+                this.height = document.getElementById(c).offsetHeight;
+                this.container = c;
+                this.vidasIniciales = 3;
+                this.creaEscenario();
+                this.crearPersonajes();
+                this.creaAnimacion();
+            }
+            iniciaJuego() {
+                this.vidas = this.vidasIniciales;
+                this.puntos = 0;
+                this.velocidadCircle = 5;
+                this.dying = 0;
+                this.keysalto = 0;
+                this.heroA.start();
+                this.anim.start();
+            }
+
+            saltoEvent(e){
+                    if ((e.keyCode === 32) && (this.keysalto <= 0)) {
+                        this.keysalto = 60;
+                    }
+                    e.preventDefault();
+            }
+
+            creaEscenario() {
+                this.stage = new Konva.Stage({
+                    container: this.container,
+                    width: this.width,
+                    height: this.height
+                });
+                //Creamos una capa para el fondo (el suelo y el cielo)
+                this.fondo = new Konva.Layer();
+                this.stage.add(this.fondo);
+
+                //Suelo
+                this.cielo = new Konva.Rect({
+                    x: 0,
+                    y: 0,
+                    width: this.width,
+                    height: this.height,                    
+                    fillLinearGradientStartPoint: { x: this.width / 2, y: 0 },
+                    fillLinearGradientEndPoint: { x: this.width / 2, y: this.height },
+                    fillLinearGradientColorStops: [0, 'blue', 1, 'orange']
+                
+                });
+
+                this.fondo.add(this.cielo);
+
+                //Suelo
+                this.suelo = new Konva.Rect({
+                    x: 0,
+                    y: this.height * 0.75,
+                    width: this.width,
+                    height: this.height * 0.25,
+                    fill: 'green',
+                });
+                // add the shape to the layer
+                this.fondo.add(this.suelo);
+
+                //Creamos otra capa para los objetos en primer plano
+
+                this.layer = new Konva.Layer();
+                this.stage.add(this.layer);
+
+                var container = this.stage.container();
+                //Esto hace que el div container pueda recibir el foco y capture los eventos de teclado
+                container.tabIndex = 1;
+                container.focus();
+                //Como funcion de callback para el evento keydown usamos
+                //el método de clase this.saltoEvent, pero hay que añadir .bind(this)
+                //para que al llamarse el método se reconzcan las variables del 
+                //ámbito de la clase.
+                container.addEventListener('keydown',this.saltoEvent.bind(this));
+            }
+            //Función de callback que crea el sprite una vez cargada la imagen 
+            crearSprite () {
+                this.heroA = new Konva.Sprite({
+                    x: this.width * 0.25,
+                    y: this.suelo.y() - 90,
+                    image: this.heroSpriteImage,
+                    animation: 'walking',
+                    animations: this.animations,
+                    frameRate: 5,
+                    frameIndex: 0,
+                    width: 80,
+                    height: 94
+                });
+                this.layer.add(this.heroA);
+
+            }
+            //función de callback que crea las nubes una vez cargada la imagen 
+            //de la nube
+            crearImage(){
+                this.nube = new Konva.Image({
+                        x: this.width - 200,
+                        y: 50,
+                        image: this.imageObj,
+                        width: 106,
+                        height: 118,
+                    });
+                    //Clonamos la primera nube para crear la segunda
+                    this.nube2 = this.nube.clone();
+                    this.nube2.y(200);
+
+                    this.layer.add(this.nube);
+                    this.layer.add(this.nube2);
+                    this.layer.add(this.nube);
+
+            }
+            crearPersonajes() {
+                //nube
+                this.nube = null;
+                this.nube2 = null;
+                 
+                this.imageObj = new Image();
+                //el objeto nube solo se puede crear una vez cargada la imagen
+                this.imageObj.onload = this.crearImage();
+                this.imageObj.src = 'assets/nube.png';
+                  
+                this.vidasText = new Konva.Text({
+                    x: 10,
+                    y: 10,
+                    text: '',
+                    fontSize: 20,
+                    fontFamily: 'Calibri',
+                    fill: 'black',
+                    text: 'Vidas:' + this.vidasIniciales
+                });
+
+                this.layer.add(this.vidasText);
+
+                this.puntosText = new Konva.Text({
+                    x: 10,
+                    y: 30,
+                    text: '',
+                    fontSize: 20,
+                    fontFamily: 'Calibri',
+                    fill: 'black',
+                    text: 'Puntos: 0'
+                });
+
+                this.layer.add(this.puntosText);
+
+                // add the layer to the stage
+                   
+                this.heroSpriteImage = new Image();
+
+                this.animations = {
+                    standing: [0, 0, 80, 94],
+                    walking: [0, 94, 80, 94,
+                        80, 94, 80, 94,
+                        160, 94, 80, 94,
+                        240, 94, 80, 94,
+                        320, 94, 80, 94,
+                        400, 94, 80, 94],
+                    jumping: [0, 282, 80, 94,
+                        80, 282, 80, 94,
+                        160, 282, 80, 94],
+                    falling: [242, 280, 80, 94,
+                        322, 280, 80, 94,
+                        409, 280, 80, 94,
+                        506, 273, 80, 94]
+                };
+                this.heroA = null;
+                this.heroSpriteImage.onload = this.crearSprite();
+                this.heroSpriteImage.src =
+                    "https://opengameart.org/sites/default/files/hero_spritesheet_0.png";
+                  
+                this.circle = new Konva.Circle({
+                    x: this.stage.width() - 20,
+                    y: this.suelo.y() - 10,
+                    radius: 10,
+                    fill: 'white',
+                    stroke: 'black',
+                    strokeWidth: 1
+                });
+
+                // add the shape to the layer
+                this.layer.add(this.circle);
+
+            }
+            //Esta función sirve para detectar cualquier colisión entre cualquiera
+            //dos objetos del juego  
+            detectarColision(o1, o2) {
+
+                return (
+                    o1.x() < o2.x() + o2.width() &&
+                    o1.x() + o1.width() > o2.x() &&
+                    o1.y() < o2.y() + o2.height() &&
+                    o1.y() + o1.height() > o2.y()
+                );
+            }
+            funcionAnimacion(frame){
+                
+                var time = frame.time,
+                        timeDiff = frame.timeDiff,
+                        frameRate = frame.frameRate;
+                
+
+                    //Desplazamos las nubes hacia la izquierda de forma rotativa
+                    this.nube.x(this.nube.x() - 3);
+                    if (this.nube.x() < (-this.nube.width()))
+                        this.nube.x(this.width);
+
+                    this.nube2.x(this.nube2.x() - 5);
+                    if (this.nube2.x() < (-this.nube2.width()))
+                        this.nube2.x(this.width);
+
+                    this.puntosText.text('Puntos:' + Math.round(frame.time / 100));
+
+                    this.aceleracion = 0;
+                    if (this.keysalto >= 0) {
+                        //La aceleración es negativa al principio, y positiva cuando keysalto<30.
+                        //Eso hará que el personaje primero se desplaza hacia arriba y luego hacia abajo
+                        this.aceleracion = (30 - this.keysalto) / 30.0;
+                        this.heroA.y(this.heroA.y() + this.aceleracion * 5);
+                        this.keysalto--;
+                    }
+
+                    this.circle.x(this.circle.x() - this.velocidadCircle);
+
+                    //La variable dying controla el número de frames que el personaje estará
+                    //en caida cuando choque con el obstáculo
+                    if (this.dying == 0) {
+                        if (this.detectarColision(this.heroA, this.circle)) {
+                            this.heroA.animation('falling');
+                            this.vidasText.text('Vidas:' + --this.vidas);
+                            this.circle.x(this.stage.width() - 10);
+                            this.velocidadCircle = 5;
+                            this.dying = 30;
+                        } else if (this.circle.x() <= 0) {
+                            this.circle.x(this.stage.width() - 10);
+                            this.velocidadCircle += 2;
+                        }
+
+                    } else {
+                        this.dying--;
+                        if (this.dying == 0) {
+                            if (this.vidas == 0) {
+                                this.heroA.y(this.suelo.y() - 90);
+                                this.anim.stop();
+                                this.heroA.frameIndex(3);
+                                this.heroA.stop()
+                            } else
+                                this.heroA.animation('walking');
+                        }
+                    }
+
+                    // update stuff
+            }
+            creaAnimacion() {
+                //La clase Animation permite llamar a una función de repintado, que será
+                //donde movamos los objetos de nuestro juego
+                //Fijaros que para que reconozca el ámbito de clase 
+                //hay que llamar a .bind(this) al pasar la funcion a la clase Animation
+                this.anim = new Konva.Animation(this.funcionAnimacion.bind(this), this.layer);
+                         
+            }
+        }
+        
+        //Esta función se llama tanto al cargar la ventana como al pulsar botón "Comenzar"
+        function cargaJuego(){
+            var contenedor = document.getElementById("container");
+            juego = new SaltaBola("container");
+            juego.iniciaJuego();
+        }
+
+        //La animación comienza cuando todos los elementos de la ventana estén cargados
+        
+        window.onload = cargaJuego;
+            
+        
+        
+        
+    </script>
+</body>
+
+</html>
