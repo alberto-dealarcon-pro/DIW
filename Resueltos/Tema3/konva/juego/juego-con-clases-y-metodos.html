@@ -159,6 +159,8 @@
                 this.imageObj.onload = this.crearImage();
                 this.imageObj.src = 'assets/nube.png';
                 
+                //El marcador es un grupo arrastrable al que añadiremos 
+                //un rectángulo (panelMarcador), y los textos con las vidas y los puntos
                 this.marcador = new Konva.Group({
                  draggable: true,
                 });
