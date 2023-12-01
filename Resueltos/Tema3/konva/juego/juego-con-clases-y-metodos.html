@@ -118,7 +118,7 @@
             crearSprite () {
                 this.heroA = new Konva.Sprite({
                     x: this.width * 0.25,
-                    y: this.suelo.y() - 90,
+                    y: this.suelo.y() - 88,
                     image: this.heroSpriteImage,
                     animation: 'walking',
                     animations: this.animations,
@@ -158,10 +158,25 @@
                 //el objeto nube solo se puede crear una vez cargada la imagen
                 this.imageObj.onload = this.crearImage();
                 this.imageObj.src = 'assets/nube.png';
-                  
-                this.vidasText = new Konva.Text({
+                
+                this.marcador = new Konva.Group({
+                 draggable: true,
+                });
+                this.panelMarcador = new Konva.Rect({
                     x: 10,
                     y: 10,
+                    width: 110,
+                    height: 50,
+                    fill: 'white',
+                    stroke:'black',
+                    strokeWidth: 2
+                });
+                
+                this.marcador.add(this.panelMarcador);
+               
+                this.vidasText = new Konva.Text({
+                    x: 13,
+                    y: 13,
                     text: '',
                     fontSize: 20,
                     fontFamily: 'Calibri',
@@ -169,11 +184,11 @@
                     text: 'Vidas:' + this.vidasIniciales
                 });
 
-                this.layer.add(this.vidasText);
+                this.marcador.add(this.vidasText);
 
                 this.puntosText = new Konva.Text({
-                    x: 10,
-                    y: 30,
+                    x: 13,
+                    y: 33,
                     text: '',
                     fontSize: 20,
                     fontFamily: 'Calibri',
@@ -181,7 +196,10 @@
                     text: 'Puntos: 0'
                 });
 
-                this.layer.add(this.puntosText);
+
+                this.marcador.add(this.puntosText);
+
+                this.layer.add(this.marcador);
 
                 // add the layer to the stage
                    
@@ -257,7 +275,8 @@
                         this.aceleracion = (30 - this.keysalto) / 30.0;
                         this.heroA.y(this.heroA.y() + this.aceleracion * 5);
                         this.keysalto--;
-                    }
+                    }else
+                       this.heroA.y(this.suelo.y() - 88);
 
                     this.circle.x(this.circle.x() - this.velocidadCircle);
 
