@@ -38,11 +38,12 @@
     
     <script>
         class SaltaBola {
+            
             constructor(c, vidas) {
                 this.width = document.getElementById(c).offsetWidth;
                 this.height = document.getElementById(c).offsetHeight;
                 this.container = c;
-                this.vidasIniciales = 3;
+                this.vidasIniciales = vidas;
                 this.creaEscenario();
                 this.crearPersonajes();
                 this.creaAnimacion();
@@ -323,7 +324,7 @@
         
         //Esta función se llama tanto al cargar la ventana como al pulsar botón "Comenzar"
         function cargaJuego(){
-            juego = new SaltaBola("container");
+            juego = new SaltaBola("container",3);
             juego.iniciaJuego();
         }
 
