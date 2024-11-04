@@ -1,5 +1,7 @@
+@use "sass:color";
+
 $myFont: Helvetica, sans-serif;
-$myColor:red;
+$myColor: black;
 
 $myFontSize: 16px;
 $myWidth: 680px;
@@ -12,6 +14,7 @@ body {
 
 #container {
   width: $myWidth;
+
 }
 
 nav {
@@ -70,12 +73,13 @@ nav {
       color: white;
   }
 
+
 @mixin boton-personalizado($nombre,$color){
   button.boton-#{$nombre} {
       @extend button, .boton;
       background-color: $color;
       &:hover{
-        background-color: lighten($color,20%);    
+        background-color: color.adjust($color, $lightness: 20%);    
       }
 } 
 }

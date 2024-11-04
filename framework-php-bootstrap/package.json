@@ -1,15 +1,5 @@
 {
-  "name": "phpboostrap5framework",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.php",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.1.3",
-    "phpboostrap5framework": "file:"
+    "bootstrap": "^5.3.3"
   }
 }
