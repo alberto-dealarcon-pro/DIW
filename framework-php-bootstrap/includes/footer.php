@@ -5,6 +5,7 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Location</h4>
                     <p class="lead mb-0">
+                    <i class="bi-envelope-fill text-primary"></i>
                         2215 John Daniel Drive
                         <br />
                         Clark, MO 65243

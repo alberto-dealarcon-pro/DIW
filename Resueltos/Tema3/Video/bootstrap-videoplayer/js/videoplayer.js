@@ -13,6 +13,7 @@ class BootstrapVideoplayer{
                 pipButton: '.btn-video-pip',
                 fullscreenButton: '.btn-video-fullscreen',
                 volumeRange: '.form-range-volume'
+                volumeButton: '.btn-volume'
             }
         }
 

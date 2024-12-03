@@ -8,6 +8,9 @@
 // Import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+$bootstrap-icons-font-src: url("../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"), url("../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
 // Import custom styles
 @import "./global.scss";
 
