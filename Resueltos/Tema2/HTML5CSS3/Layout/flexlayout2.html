@@ -24,10 +24,30 @@ body {
   color: white;
 }
 
+/* Top note */
+.note {
+  background: yellow;
+  padding: 5px;
+}
+.note h4 {
+  text-align: center;
+  margin: 0;
+}
+
 /* Style the top navigation bar */
 .navbar {
   display: flex;
   background-color: #333;
+}
+
+/* navigation list (moved from inline) */
+.nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li {
+  list-style: none;
 }
 
 /* Style the navigation bar links */
@@ -71,6 +91,8 @@ body {
   width: 100%;
   padding: 20px;
 }
+.fakeimg--large { height: 200px; }
+.fakeimg--small { height: 60px; }
 
 /* Footer */
 .footer {
@@ -99,10 +121,6 @@ body {
 </head>
 <body>
 
-<!-- Note -->
-<div style="background:yellow;padding:5px">
-  <h4 style="text-align:center">Resize the browser window to see the responsive effect.</h4>
-</div>
 
 <!-- Header -->
 <header class="header">
@@ -112,11 +130,11 @@ body {
 
 <!-- Navigation Bar -->
 <nav class="navbar" aria-label="Primary">
-  <ul style="display:flex;margin:0;padding:0;">
-    <li style="list-style:none;"><a href="#">Link</a></li>
-    <li style="list-style:none;"><a href="#">Link</a></li>
-    <li style="list-style:none;"><a href="#">Link</a></li>
-    <li style="list-style:none;"><a href="#">Link</a></li>
+  <ul class="nav-list">
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
   </ul>
 </nav>
 
@@ -125,20 +143,20 @@ body {
   <aside class="side">
     <h2>About Me</h2>
     <h3>Photo of me:</h3>
-    <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
+    <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
     <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
     <h3>More Text</h3>
     <p>Lorem ipsum dolor sit ame.</p>
-    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure><br>
-    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure><br>
-    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure>
   </aside>
 
   <main class="main">
     <article>
       <h2>Title heading</h2>
       <p class="muted">Title description, Dec 7, 2017</p>
-      <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
+      <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </article>
@@ -146,7 +164,7 @@ body {
     <article>
       <h2>Title heading</h2>
       <p class="muted">Title description, Sep 2, 2017</p>
-      <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
+      <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </article>
