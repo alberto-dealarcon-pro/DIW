@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
 <title>Page Title</title>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <style>
 * {
   box-sizing: border-box;
-  border: 1px solid black;  
+  /*border: 1px solid black;  */
 }
 
 /* Style the body */
@@ -84,6 +84,16 @@ body {
   .row, .navbar {   
     flex-direction: column;
   }
+  .navbar ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar li {
+    list-style: none;
+    text-align: center;
+  }
 }
 </style>
 </head>
@@ -95,51 +105,58 @@ body {
 </div>
 
 <!-- Header -->
-<div class="header">
-  <h2>My Website</h2>
-  <p>With a <b>flexible</b> layout.</p>
-</div>
+<header class="header">
+  <h1>My Website</h1>
+  <p>With a <strong>flexible</strong> layout.</p>
+</header>
 
 <!-- Navigation Bar -->
-<div class="navbar">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
+<nav class="navbar" aria-label="Primary">
+  <ul style="display:flex;margin:0;padding:0;">
+    <li style="list-style:none;"><a href="#">Link</a></li>
+    <li style="list-style:none;"><a href="#">Link</a></li>
+    <li style="list-style:none;"><a href="#">Link</a></li>
+    <li style="list-style:none;"><a href="#">Link</a></li>
+  </ul>
+</nav>
 
 <!-- The flexible grid (content) -->
 <div class="row">
-  <div class="side">
+  <aside class="side">
     <h2>About Me</h2>
-    <h5>Photo of me:</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
+    <h3>Photo of me:</h3>
+    <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
     <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
     <h3>More Text</h3>
     <p>Lorem ipsum dolor sit ame.</p>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div>
-  </div>
-  <div class="main">
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Dec 7, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    <br>
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-  </div>
+    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg" style="height:60px;"><figcaption>Image</figcaption></figure>
+  </aside>
+
+  <main class="main">
+    <article>
+      <h2>Title heading</h2>
+      <p class="muted">Title description, Dec 7, 2017</p>
+      <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </article>
+
+    <article>
+      <h2>Title heading</h2>
+      <p class="muted">Title description, Sep 2, 2017</p>
+      <figure class="fakeimg" style="height:200px;"><figcaption>Image</figcaption></figure>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </article>
+  </main>
 </div>
 
 <!-- Footer -->
-<div class="footer">
+<footer class="footer">
   <h2>Footer</h2>
-</div>
+</footer>
 
 </body>
 </html>
