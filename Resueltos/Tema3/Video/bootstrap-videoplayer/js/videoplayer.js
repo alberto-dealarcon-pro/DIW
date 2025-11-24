@@ -12,7 +12,7 @@ class BootstrapVideoplayer{
                 progressbar: '.progress-bar',
                 pipButton: '.btn-video-pip',
                 fullscreenButton: '.btn-video-fullscreen',
-                volumeRange: '.form-range-volume'
+                volumeRange: '.form-range-volume',
                 volumeButton: '.btn-volume'
             }
         }
