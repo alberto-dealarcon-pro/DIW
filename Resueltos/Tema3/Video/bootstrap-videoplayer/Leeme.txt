@@ -4,23 +4,3 @@ Este es un componente SCSS de vídeo basado en Boostrap. El proyecto original se
 
 https://koehlersimon.github.io/bootstrap-videoplayer/
 
-CSS Classes
-
-<table>
-    <tr>
-        <th>Class</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>.videoplayer</td>
-        <td>Sets the videoplayer to position relative and display block</td>
-    </tr>
-    <tr>
-        <td>.video</td>
-        <td>Sets the max width and height of the video to 100%</td>
-    </tr>
-    <tr>
-        <td>.controls</td>
-        <td>Defines the control section for the player. Controls are positioned with position absolute and display flex</td>
-    </tr>
-</table>
