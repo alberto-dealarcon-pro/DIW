@@ -5,7 +5,7 @@
 <style>
 /* unvisited link */
 a:link {
-    color: red;
+    color: red !important;
 }
 
 /* visited link */
@@ -131,7 +131,7 @@ h1::after{
 
 <body>
 <h1>Pseudoclases</h1>
-<div> </div>
+
 
 <h2>Uso de las pseudoclases link, visited, hover y active.</h2>
 <p><b><a href="default.asp" target="_blank">This is a link</a></b></p>
@@ -149,8 +149,8 @@ h1::after{
 <h2>Pseudoclase :optional, :invalid  y :required en campos de formulario</h2>
 
 <form class="simple-form" action="/action_page.php" method="get">
-  <input type="text" placeholder="Nombre" name="fname">
-  <input type="text" placeholder="Apellidos" name="lname">
+  <input type="text" placeholder="Nombre" name="fname" required>
+  <input type="text" placeholder="Apellidos" name="lname" required>
   <input type="text" placeholder="DNI" name="dni" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" required>
   <input type="email" placeholder="e-mail" name="email">
   <input title="Número de 9 cifras" type="text" placeholder="Teléfono" pattern="(\d{9})" name="phone">    

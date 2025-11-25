@@ -1,6 +1,6 @@
 body {
   font-family: Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 19px;
   color: black;
 }
 
@@ -60,7 +60,7 @@ button.boton, button.boton-verde, button.boton-rojo {
   background-color: blue;
   padding: 10px;
   font-weight: bold;
-  color: white;
+  color: rgb(15, 0, 0);
 }
 
 button.boton-rojo {
@@ -77,11 +77,11 @@ button.boton-verde:hover {
   background-color: #00e600;
 }
 
-ul {
-  list-style-type: none;
-}
 ul li {
   display: inline-block;
+}
+ul {
+  list-style-type: none;
 }
 
 .cartel-40px {
