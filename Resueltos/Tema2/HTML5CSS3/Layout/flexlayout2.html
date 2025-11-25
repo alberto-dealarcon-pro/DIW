@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
 <title>Page Title</title>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <style>
 * {
   box-sizing: border-box;
-  border: 1px solid black;  
+  /*border: 1px solid black;  */
 }
 
 /* Style the body */
@@ -24,10 +24,30 @@ body {
   color: white;
 }
 
+/* Top note */
+.note {
+  background: yellow;
+  padding: 5px;
+}
+.note h4 {
+  text-align: center;
+  margin: 0;
+}
+
 /* Style the top navigation bar */
 .navbar {
   display: flex;
   background-color: #333;
+}
+
+/* navigation list (moved from inline) */
+.nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li {
+  list-style: none;
 }
 
 /* Style the navigation bar links */
@@ -71,6 +91,8 @@ body {
   width: 100%;
   padding: 20px;
 }
+.fakeimg--large { height: 200px; }
+.fakeimg--small { height: 60px; }
 
 /* Footer */
 .footer {
@@ -84,62 +106,75 @@ body {
   .row, .navbar {   
     flex-direction: column;
   }
+  .navbar ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar li {
+    list-style: none;
+    text-align: center;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- Note -->
-<div style="background:yellow;padding:5px">
-  <h4 style="text-align:center">Resize the browser window to see the responsive effect.</h4>
-</div>
 
 <!-- Header -->
-<div class="header">
-  <h2>My Website</h2>
-  <p>With a <b>flexible</b> layout.</p>
-</div>
+<header class="header">
+  <h1>My Website</h1>
+  <p>With a <strong>flexible</strong> layout.</p>
+</header>
 
 <!-- Navigation Bar -->
-<div class="navbar">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
+<nav class="navbar" aria-label="Primary">
+  <ul class="nav-list">
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+    <li><a href="#">Link</a></li>
+  </ul>
+</nav>
 
 <!-- The flexible grid (content) -->
 <div class="row">
-  <div class="side">
+  <aside class="side">
     <h2>About Me</h2>
-    <h5>Photo of me:</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
+    <h3>Photo of me:</h3>
+    <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
     <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
     <h3>More Text</h3>
     <p>Lorem ipsum dolor sit ame.</p>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div>
-  </div>
-  <div class="main">
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Dec 7, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    <br>
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-  </div>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure><br>
+    <figure class="fakeimg fakeimg--small"><figcaption>Image</figcaption></figure>
+  </aside>
+
+  <main class="main">
+    <article>
+      <h2>Title heading</h2>
+      <p class="muted">Title description, Dec 7, 2017</p>
+      <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </article>
+
+    <article>
+      <h2>Title heading</h2>
+      <p class="muted">Title description, Sep 2, 2017</p>
+      <figure class="fakeimg fakeimg--large"><figcaption>Image</figcaption></figure>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </article>
+  </main>
 </div>
 
 <!-- Footer -->
-<div class="footer">
+<footer class="footer">
   <h2>Footer</h2>
-</div>
+</footer>
 
 </body>
 </html>
