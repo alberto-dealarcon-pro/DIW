@@ -11,6 +11,7 @@ var game = (function () {
     }
     
     function update(){
+        //Comentar esta línea si se usa setInterval en init()
         requestAnimationFrame(update);
         currentTime = performance.now()
         deltaTime = currentTime - lastTime
