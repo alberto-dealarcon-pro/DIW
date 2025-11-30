@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Billar 2 jugadores — Konva 9.3</title>
+  <style>
+    body { font-family: Inter, system-ui, Arial; margin:0; display:flex; height:100vh; }
+    #ui { width:320px; padding:16px; box-sizing:border-box; background:#f4f6f8; border-right:1px solid #ddd; }
+    #container { flex:1; display:flex; align-items:center; justify-content:center; background:#2b2b2b; }
+    h1{ font-size:18px; margin:0 0 12px 0 }
+    .score{ margin:8px 0; display:flex; justify-content:space-between; align-items:center }
+    .btn{ padding:8px 12px; border-radius:8px; background:#0b79d0; color:#fff; border:none; cursor:pointer }
+    .small{ font-size:13px; color:#555 }
+    #log{ height:120px; overflow:auto; background:#fff; padding:8px; border-radius:6px; border:1px solid #ddd; font-size:13px }
+    label{ display:block; margin-top:8px; font-size:13px }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <h1>Billar (Konva 9.3) — 2 jugadores</h1>
+    <div class="score">
+      <div>
+        <div><strong id="p1name">Jugador 1</strong></div>
+        <div class="small">Puntos: <span id="p1score">0</span></div>
+      </div>
+      <div>
+        <div><strong id="p2name">Jugador 2</strong></div>
+        <div class="small">Puntos: <span id="p2score">0</span></div>
+      </div>
+    </div>
+    <div class="small">Turno: <strong id="turnIndicator">Jugador 1</strong></div>
+    <label>Fricción (0-1)</label>
+    <input id="friction" type="range" min="0.9940" max="0.9960" step="0.0001" value="0.990" />
+    <div style="height:8px"></div>
+    <button id="resetBtn" class="btn">Reiniciar partida</button>
+    <div style="height:12px"></div>
+    <div class="small">Controles:</div>
+    <ul class="small">
+      <li>Click y arrastra desde la bola blanca para apuntar.</li>
+      <li>La longitud del tirón controla la fuerza.</li>
+      <li>Los jugadores alternan turno tras cada tiro.</li>
+    </ul>
+
+    <div style="height:12px"></div>
+    <div id="log"></div>
+  </div>
+
+  <div id="container">
+    <div id="stage-parent">
+      <div id="stage" style="background:transparent"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/konva@9.3.0/konva.min.js"></script>
+  <script>
+  // ==================================================================================
+  // Billar simple para 2 jugadores — Konva 9.3
+  // - Físicas simplificadas: colisiones elásticas, fricción, rebote en bandas
+  // - Interacción: click+drag desde bola blanca para disparar
+  // - Puntuación: cada bola embocada da 1 punto (salvo la blanca, que quita 1)
+  // - Turnos: alternan en cada tiro (simplificado)
+  // ==================================================================================
+
+  const WIDTH = 1000;
+  const HEIGHT = 560;
+  const TABLE_MARGIN = 40;
+  const TABLE_WIDTH = WIDTH - TABLE_MARGIN*2;
+  const TABLE_HEIGHT = HEIGHT - TABLE_MARGIN*2;
+  const BALL_RADIUS = 12;
+  const BALL_MASS = 1; // igual para todas
+
+  const pockets = [
+    {x: TABLE_MARGIN, y: TABLE_MARGIN},
+    {x: WIDTH/2, y: TABLE_MARGIN},
+    {x: WIDTH - TABLE_MARGIN, y: TABLE_MARGIN},
+    {x: TABLE_MARGIN, y: HEIGHT - TABLE_MARGIN},
+    {x: WIDTH/2, y: HEIGHT - TABLE_MARGIN},
+    {x: WIDTH - TABLE_MARGIN, y: HEIGHT - TABLE_MARGIN}
+  ];
+  const POCKET_RADIUS = 26;
+
+  const stage = new Konva.Stage({
+    container: 'stage',
+    width: WIDTH,
+    height: HEIGHT,
+  });
+
+  const tableLayer = new Konva.Layer();
+  const ballLayer = new Konva.Layer();
+  const uiLayer = new Konva.Layer();
+  stage.add(tableLayer, ballLayer, uiLayer);
+
+  // Table background
+  const tableGroup = new Konva.Group();
+  const rail = new Konva.Rect({
+    x: TABLE_MARGIN - 20,
+    y: TABLE_MARGIN - 20,
+    width: TABLE_WIDTH + 40,
+    height: TABLE_HEIGHT + 40,
+    cornerRadius: 8,
+    fill: '#2f4f4f'
+  });
+  const felt = new Konva.Rect({
+    x: TABLE_MARGIN,
+    y: TABLE_MARGIN,
+    width: TABLE_WIDTH,
+    height: TABLE_HEIGHT,
+    cornerRadius: 6,
+    fill: '#0a6f4a'
+  });
+  tableGroup.add(rail, felt);
+
+  // pockets
+  pockets.forEach(p => {
+    const pshape = new Konva.Circle({ x: p.x, y: p.y, radius: POCKET_RADIUS, fill: '#0b0b0b' });
+    tableGroup.add(pshape);
+  });
+
+  tableLayer.add(tableGroup);
+
+  // Ball representation
+  class Ball {
+    constructor(id, x, y, color, number=null, isCue=false){
+      this.id = id;
+      this.x = x; this.y = y;
+      this.vx = 0; this.vy = 0;
+      this.r = BALL_RADIUS;
+      this.mass = BALL_MASS;
+      this.color = color;
+      this.number = number;
+      this.isCue = isCue;
+      this.pocketed = false;
+
+      this.shape = new Konva.Circle({ x:this.x, y:this.y, radius:this.r, fill:this.color, stroke:'#222', strokeWidth:1 });
+      if(!isCue){
+        const txt = new Konva.Text({ text: number?String(number):'', fontSize:11, fill:'#fff', x:this.x - 6, y:this.y - 6 });
+        this.text = txt;
+        ballLayer.add(txt);
+      }
+      ballLayer.add(this.shape);
+    }
+
+    updateShape(){
+      this.shape.x(this.x); this.shape.y(this.y);
+      if(this.text){ this.text.x(this.x - 6); this.text.y(this.y - 7); }
+    }
+
+    applyVelocity(dt){
+      this.x += this.vx * dt;
+      this.y += this.vy * dt;
+    }
+  }
+
+  // create balls: simple rack of 7 balls + cue + some extras to keep short
+  const balls = [];
+  function setupBalls(){
+    balls.forEach(b => {
+      if(b.shape) b.shape.destroy();
+      if(b.text) b.text.destroy();
+    });
+    balls.length = 0;
+
+    // place a triangular rack
+    const rackX = WIDTH*0.65;
+    const rackY = HEIGHT/2;
+    const colors = ['#ffd166','#ef476f','#118ab2','#06d6a0','#073b4c','#f72585','#7209b7'];
+    let id = 0;
+    let idx=0;
+    for(let row=0; row<4; row++){
+      for(let col=0; col<=row; col++){
+        const px = rackX + row*(BALL_RADIUS*2 + 1);
+        const py = rackY + (col - row/2) * (BALL_RADIUS*2 + 1);
+        const color = colors[idx % colors.length];
+        balls.push(new Ball(id++, px, py, color, idx+1));
+        idx++;
+      }
+    }
+
+    // cue ball
+    balls.push(new Ball(id++, WIDTH*0.25, HEIGHT/2, '#ffffff', null, true));
+
+    ballLayer.draw();
+  }
+
+  setupBalls();
+
+  // Cue line/indicator
+  const cueLine = new Konva.Line({ points: [0,0,0,0], stroke:'#fff', strokeWidth:3, visible:false, opacity:0.9, lineCap:'round'});
+  uiLayer.add(cueLine);
+
+  // simple UI text for messages
+  const logBox = document.getElementById('log');
+  function log(msg){
+    const p = document.createElement('div'); p.textContent = msg; logBox.prepend(p);
+  }
+
+  // Game state
+  let currentPlayer = 1; // 1 or 2
+  let scores = {1:0, 2:0};
+  const turnIndicator = document.getElementById('turnIndicator');
+  const p1scoreEl = document.getElementById('p1score');
+  const p2scoreEl = document.getElementById('p2score');
+  function updateUI(){
+    turnIndicator.textContent = currentPlayer===1? 'Jugador 1':'Jugador 2';
+    p1scoreEl.textContent = scores[1]; p2scoreEl.textContent = scores[2];
+  }
+
+  // Physics parameters
+  let friction = parseFloat(document.getElementById('friction').value);
+  document.getElementById('friction').addEventListener('input', e => {
+    friction = parseFloat(e.target.value);
+  });
+
+  // Helper functions
+  function dist2(a,b){ const dx=a.x-b.x; const dy=a.y-b.y; return dx*dx+dy*dy }
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+
+  // pockets check
+  function checkPockets(ball){
+    for(const p of pockets){
+      const dx = ball.x - p.x; const dy = ball.y - p.y;
+      if(Math.sqrt(dx*dx+dy*dy) < POCKET_RADIUS - 4){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // collision between two balls (elastic)
+  function resolveBallCollision(b1, b2){
+    if(b1.pocketed || b2.pocketed) return;
+    const dx = b2.x - b1.x; const dy = b2.y - b1.y;
+    const dist = Math.sqrt(dx*dx + dy*dy) || 0.0001;
+    if(dist < b1.r + b2.r - 0.5){
+      // minimum translation to separate
+      const overlap = (b1.r + b2.r) - dist;
+      const ux = dx/dist; const uy = dy/dist;
+      const totalMass = b1.mass + b2.mass;
+      b1.x -= ux * overlap * (b2.mass/totalMass);
+      b1.y -= uy * overlap * (b2.mass/totalMass);
+      b2.x += ux * overlap * (b1.mass/totalMass);
+      b2.y += uy * overlap * (b1.mass/totalMass);
+
+      // relative velocity
+      const rvx = b2.vx - b1.vx; const rvy = b2.vy - b1.vy;
+      const velAlongNormal = rvx*ux + rvy*uy;
+      if(velAlongNormal > 0) return; // moving apart
+
+      const restitution = 0.98; // nearly elastic
+      const j = -(1 + restitution) * velAlongNormal / (1/b1.mass + 1/b2.mass);
+      const impulseX = j * ux; const impulseY = j * uy;
+      b1.vx -= impulseX / b1.mass; b1.vy -= impulseY / b1.mass;
+      b2.vx += impulseX / b2.mass; b2.vy += impulseY / b2.mass;
+    }
+  }
+
+  // table bounds and rail collisions
+  function handleRails(ball){
+    if(ball.pocketed) return;
+    const left = TABLE_MARGIN + ball.r;
+    const right = WIDTH - TABLE_MARGIN - ball.r;
+    const top = TABLE_MARGIN + ball.r;
+    const bottom = HEIGHT - TABLE_MARGIN - ball.r;
+    if(ball.x < left){ ball.x = left; ball.vx = -ball.vx * 0.95; }
+    if(ball.x > right){ ball.x = right; ball.vx = -ball.vx * 0.95; }
+    if(ball.y < top){ ball.y = top; ball.vy = -ball.vy * 0.95; }
+    if(ball.y > bottom){ ball.y = bottom; ball.vy = -ball.vy * 0.95; }
+  }
+
+  // pocket handling
+  function tryPocket(ball){
+    if(ball.pocketed) return;
+    if(checkPockets(ball)){
+      ball.pocketed = true;
+      // remove shapes
+      ball.shape.visible(false);
+      if(ball.text) ball.text.visible(false);
+      // scoring: cue ball penaliza -1
+      if(ball.isCue){
+        scores[currentPlayer] = Math.max(0, scores[currentPlayer]-1);
+        log(`¡Falta! Bola blanca embocada. -1 punto a Jugador ${currentPlayer}`);
+      } else {
+        scores[currentPlayer] += 1;
+        log(`Bola ${ball.number} embocada por Jugador ${currentPlayer} (+1)`);
+      }
+      updateUI();
+      ball.vx = ball.vy = 0;
+      ballLayer.draw();
+    }
+  }
+
+  // physics loop
+  let lastTime = performance.now();
+  function step(now){
+    const dt = (now - lastTime) / 16.6667; // ~60fps units
+    lastTime = now;
+
+    // update positions
+    for(const b of balls){
+      if(b.pocketed) continue;
+      b.applyVelocity(dt);
+    }
+
+    // collisions ball-ball
+    for(let i=0;i<balls.length;i++){
+      for(let j=i+1;j<balls.length;j++){
+        resolveBallCollision(balls[i], balls[j]);
+      }
+    }
+
+    // rails and pockets and friction
+    for(const b of balls){
+      if(b.pocketed) continue;
+      handleRails(b);
+      tryPocket(b);
+      // friction
+      b.vx *= friction;
+      b.vy *= friction;
+      if(Math.abs(b.vx)+Math.abs(b.vy) < 0.02){ b.vx = 0; b.vy = 0; }
+      b.updateShape();
+    }
+
+    ballLayer.batchDraw();
+    uiLayer.batchDraw();
+    tableLayer.batchDraw();
+
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+
+  // Interaction: aim and shoot from cue ball
+  const cueBall = () => balls.find(b => b.isCue);
+  let aiming = false;
+  let aimStart = null;
+  let aimCurrent = null;
+
+  stage.on('mousedown touchstart', (e) => {
+    const pos = stage.getPointerPosition();
+    const cb = cueBall();
+    if(!cb || cb.pocketed) return;
+    const dx = pos.x - cb.x; const dy = pos.y - cb.y;
+    const d2 = dx*dx + dy*dy;
+    // require starting near cue ball
+    if(d2 < (cb.r+8)*(cb.r+8) && areBallsStopped()){
+      aiming = true; aimStart = {x:pos.x, y:pos.y}; aimCurrent = {x:pos.x, y:pos.y};
+      cueLine.visible(true);
+    }
+  });
+
+  stage.on('mousemove touchmove', (e)=>{
+    if(!aiming) return;
+    const pos = stage.getPointerPosition(); aimCurrent = {x:pos.x, y:pos.y};
+    updateCueLine();
+  });
+
+  stage.on('mouseup touchend', (e)=>{
+    if(!aiming) return;
+    aiming = false; cueLine.visible(false);
+    const cb = cueBall(); if(!cb) return;
+    const dx = aimStart.x - aimCurrent.x; const dy = aimStart.y - aimCurrent.y; // direction from cue to pulled mouse
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const maxForce = 28;
+    const pow = clamp(dist/8, 0, maxForce);
+    // apply velocity
+    const ang = Math.atan2(dy, dx);
+    cb.vx = Math.cos(ang) * pow;
+    cb.vy = Math.sin(ang) * pow;
+    log(`Jugador ${currentPlayer} dispara (fuerza ${pow.toFixed(1)})`);
+    // turn will switch when balls stop moving (simple)
+    switchPlayerAfterShot();
+  });
+
+  function updateCueLine(){
+    const cb = cueBall(); if(!cb) return;
+    const sx = cb.x; const sy = cb.y;
+    const ex = aimCurrent.x; const ey = aimCurrent.y;
+    cueLine.points([sx, sy, ex, ey]);
+  }
+
+  // check if all balls stopped
+  function areBallsStopped(){
+    for(const b of balls){ if(b.pocketed) continue; if(Math.abs(b.vx) > 0.05 || Math.abs(b.vy) > 0.05) return false; }
+    return true;
+  }
+
+  // after shot, wait until stop then switch player
+  let waitingSwitch = false;
+  function switchPlayerAfterShot(){
+    waitingSwitch = true;
+    const check = setInterval(()=>{
+      if(areBallsStopped()){
+        clearInterval(check);
+        // switch
+        currentPlayer = currentPlayer===1?2:1;
+        updateUI();
+        log(`Turno: Jugador ${currentPlayer}`);
+        waitingSwitch = false;
+      }
+    }, 300);
+  }
+
+  // reset button
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    scores = {1:0,2:0}; currentPlayer = 1; updateUI(); setupBalls(); log('Partida reiniciada');
+  });
+
+  // initial UI update
+  updateUI();
+  log('Juego listo. Click y arrastra desde la bola blanca para disparar.');
+
+  </script>
+</body>
+</html>
