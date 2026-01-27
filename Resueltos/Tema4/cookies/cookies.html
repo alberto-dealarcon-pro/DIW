@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo Cookies RGPD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #222;
+            color: #fff;
+            padding: 15px;
+            display: none;
+        }
+
+        #cookie-banner button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ejemplo de uso de Cookies</h1>
+
+<nav>
+    <a onclick="navigate('inicio')">Inicio</a>
+    <a onclick="navigate('productos')">Productos</a>
+    <a onclick="navigate('contacto')">Contacto</a>
+</nav>
+
+<p id="content">Bienvenido a la página de inicio.</p>
+
+<!-- Banner de cookies -->
+<div id="cookie-banner">
+    Este sitio usa cookies técnicas y cookies de personalización.
+    <button onclick="acceptCookies()">Aceptar</button>
+    <button onclick="rejectCookies()">Rechazar</button>
+</div>
+
+<script>
+    // --------- UTILIDADES COOKIES ---------
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+    }
+
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let c of cookies) {
+            c = c.trim();
+            if (c.startsWith(name + "=")) {
+                return c.substring(name.length + 1);
+            }
+        }
+        return null;
+    }
+
+    // --------- GESTIÓN COOKIES RGPD ---------
+    function acceptCookies() {
+        setCookie("cookie_consent", "accepted", 365); // cookie técnica
+        document.getElementById("cookie-banner").style.display = "none";
+    }
+
+    function rejectCookies() {
+        setCookie("cookie_consent", "rejected", 365); // cookie técnica
+        document.getElementById("cookie-banner").style.display = "none";
+    }
+
+    // --------- NAVEGACIÓN ---------
+    function navigate(section) {
+        document.getElementById("content").innerText =
+            "Estás viendo la sección: " + section;
+
+        // Solo guardar navegación si hay consentimiento
+        if (getCookie("cookie_consent") === "accepted") {
+            setCookie("last_section", section, 7);
+        }
+    }
+
+    // --------- AL CARGAR LA PÁGINA ---------
+    window.onload = function () {
+        const consent = getCookie("cookie_consent");
+
+        if (!consent) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+
+        // Restaurar navegación solo si hubo consentimiento
+        if (consent === "accepted") {
+            const last = getCookie("last_section");
+            if (last) {
+                navigate(last);
+            }
+        }
+    };
+</script>
+
+</body>
+</html>
